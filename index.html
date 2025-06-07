@@ -2,782 +2,665 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Counting Quiz (Permutations & Combinations)</title>
+    <title>Discrete Math Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-layout { display: flex; }
+        .quiz-main { flex: 1; }
+        .quiz-sidebar {
+            width: 120px;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .qnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .qnav-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #888;
+            background: #eee;
+            border-radius: 6px;
+            text-align: center;
+            line-height: 32px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s, color 0.2s;
+        }
+        .qnav-btn.active {
+            background: #0078d4;
+            color: #fff;
+            border: 2px solid #0078d4;
+        }
+        .qnav-btn.correct {
+            background: #2ecc40 !important;
+            color: #fff !important;
+            border: 2px solid #2ecc40 !important;
+        }
+        .qnav-btn.incorrect {
+            background: #ff4136 !important;
+            color: #fff !important;
+            border: 2px solid #ff4136 !important;
+        }
+        .question-block.correct {
+            background: #eaffea;
+            border: 2px solid #2ecc40;
+        }
+        .question-block.incorrect {
+            background: #ffeaea;
+            border: 2px solid #ff4136;
+        }
+        #timer-box {
+            margin: 10px 0;
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            font-size: 1.2em;
+            display: inline-block;
+        }
+        #start-timer-btn {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<div class="quiz-container">
-    <h1>Counting Quiz</h1>
-    <form id="quiz-form">
-        <!-- Page 1 -->
-        <div id="page1" class="quiz-page">
-            <div class="question-block" id="block-q1">
-                <label for="q1">1. A cloud system has 12 virtual machines and 5 distinct data centers. If each data center must host at least one VM, in how many ways can the VMs be allocated?</label>
-                <select id="q1" name="q1" required>
-                    <option value="">--Select--</option>
-                    <option value="2049016320">2,049,016,320</option>
-                    <option value="120">120</option>
-                    <option value="17075136">17,075,136</option>
-                    <option value="3628800">3,628,800</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q2">
-                <label for="q2">2. A password must consist of 4 uppercase letters followed by 3 digits. Letters can’t repeat, digits can. How many such passwords exist?</label>
-                <select id="q2" name="q2" required>
-                    <option value="">--Select--</option>
-                    <option value="358800000">358,800,000</option>
-                    <option value="17576000">17,576,000</option>
-                    <option value="2600000">2,600,000</option>
-                    <option value="676000">676,000</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q3">
-                <label for="q3">3. You want to assign 10 distinct tasks to 4 processors, where each processor gets at least 1 task. How many such assignments are possible?</label>
-                <select id="q3" name="q3" required>
-                    <option value="">--Select--</option>
-                    <option value="847288609">847,288,609</option>
-                    <option value="1048576">1,048,576</option>
-                    <option value="4096">4,096</option>
-                    <option value="3628800">3,628,800</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q4">
-                <label for="q4">4. A server logs user activity using 6-character IDs from {A-Z, 0-9}. How many unique IDs are possible if the first character must be a letter and repetition is allowed?</label>
-                <select id="q4" name="q4" required>
-                    <option value="">--Select--</option>
-                    <option value="1572120576">1,572,120,576</option>
-                    <option value="2176782336">2,176,782,336</option>
-                    <option value="308915776">308,915,776</option>
-                    <option value="60466176">60,466,176</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q5">
-                <label for="q5">5. How many different 4-letter identifiers can be formed using letters A-Z, if the identifier must start and end with a vowel and contain no repeated letters?</label>
-                <select id="q5" name="q5" required>
-                    <option value="">--Select--</option>
-                    <option value="11040">11,040</option>
-                    <option value="12000">12,000</option>
-                    <option value="2400">2,400</option>
-                    <option value="5040">5,040</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q6">
-                <label for="q6">6. A student selects 4 files from 12 to upload, but 2 files are too large to be selected together. How many valid file combinations are there?</label>
-                <select id="q6" name="q6" required>
-                    <option value="">--Select--</option>
-                    <option value="450">450</option>
-                    <option value="495">495</option>
-                    <option value="435">435</option>
-                    <option value="420">420</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q7">
-                <label for="q7">7. A distributed DB has 5 identical servers. You have 15 distinct data chunks to distribute so that each server gets at least one. How many ways to assign them?</label>
-                <select id="q7" name="q7" required>
-                    <option value="">--Select--</option>
-                    <option value="1382958400">1,382,958,400</option>
-                    <option value="120">120</option>
-                    <option value="756756">756,756</option>
-                    <option value="1307674368000">1,307,674,368,000</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q8">
-                <label for="q8">8. A company uses employee IDs with format LL-DDD, where L is A–Z and D is 0–9. No repeated letters or digits. How many unique IDs are possible?</label>
-                <select id="q8" name="q8" required>
-                    <option value="">--Select--</option>
-                    <option value="468000">468,000</option>
-                    <option value="676000">676,000</option>
-                    <option value="650000">650,000</option>
-                    <option value="720000">720,000</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q9">
-                <label for="q9">9. How many 3-letter computer command codes (A–Z) contain exactly two vowels (A,E,I,O,U)?</label>
-                <select id="q9" name="q9" required>
-                    <option value="">--Select--</option>
-                    <option value="1260">1,260</option>
-                    <option value="2520">2,520</option>
-                    <option value="2100">2,100</option>
-                    <option value="1050">1,050</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q10">
-                <label for="q10">10. You have 8 identical tasks and 3 servers. How many ways can the tasks be distributed if each server gets at least 2 tasks?</label>
-                <select id="q10" name="q10" required>
-                    <option value="">--Select--</option>
-                    <option value="6">6</option>
-                    <option value="12">12</option>
-                    <option value="36">36</option>
-                    <option value="56">56</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q11">
-                <label for="q11">11. You are setting up a 5-digit numeric PIN where the digits are strictly increasing. How many such PINs are there?</label>
-                <select id="q11" name="q11" required>
-                    <option value="">--Select--</option>
-                    <option value="252">252</option>
-                    <option value="120">120</option>
-                    <option value="210">210</option>
-                    <option value="5040">5,040</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q12">
-                <label for="q12">12. How many distinct triangles can be formed using vertices from 10 labeled points such that no side is on a given base line connecting 3 of them?</label>
-                <select id="q12" name="q12" required>
-                    <option value="">--Select--</option>
-                    <option value="96">96</option>
-                    <option value="120">120</option>
-                    <option value="84">84</option>
-                    <option value="60">60</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q13">
-                <label for="q13">13. In a security system, 6-digit codes are created using only digits 1–9, with no repeating digits and digits must not be in increasing order. How many such codes are there?</label>
-                <select id="q13" name="q13" required>
-                    <option value="">--Select--</option>
-                    <option value="60396">60,396</option>
-                    <option value="60480">60,480</option>
-                    <option value="84">84</option>
-                    <option value="720">720</option>
-                </select>
-            </div>
-            <button type="button" id="next-btn">Next</button>
+<div class="quiz-layout">
+    <div class="quiz-main">
+        <h1>Discrete Math Quiz</h1>
+        <div id="timer-box">
+            <button id="start-timer-btn">Start Timer</button>
+            <span id="timer-display"></span>
         </div>
-        <!-- Page 2 -->
-        <div id="page2" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-q14">
-                <label for="q14">14. How many 7-digit numbers contain only digits 1–7 and no repetition, such that they are divisible by 7?</label>
-                <select id="q14" name="q14" required>
-                    <option value="">--Select--</option>
-                    <option value="720">720</option>
-                    <option value="5040">5,040</option>
-                    <option value="630">630</option>
-                    <option value="840">840</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q15">
-                <label for="q15">15. You are connecting 4 sensors to 6 distinct ports, where each port can take only 1 sensor. How many injective assignments are possible?</label>
-                <select id="q15" name="q15" required>
-                    <option value="">--Select--</option>
-                    <option value="360">360</option>
-                    <option value="720">720</option>
-                    <option value="1296">1,296</option>
-                    <option value="24">24</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q16">
-                <label for="q16">16. In how many ways can 6 students be arranged in a circle such that 2 best friends are not seated next to each other?</label>
-                <select id="q16" name="q16" required>
-                    <option value="">--Select--</option>
-                    <option value="72">72</option>
-                    <option value="120">120</option>
-                    <option value="48">48</option>
-                    <option value="24">24</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q17">
-                <label for="q17">17. A secure file must be split into 3 distinct parts among 5 computers such that no single computer has all parts. How many such distributions are possible?</label>
-                <select id="q17" name="q17" required>
-                    <option value="">--Select--</option>
-                    <option value="120">120</option>
-                    <option value="125">125</option>
-                    <option value="60">60</option>
-                    <option value="15">15</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q18">
-                <label for="q18">18. You choose a random subset of digits 1–9. What is the probability that it contains no two consecutive numbers?</label>
-                <select id="q18" name="q18" required>
-                    <option value="">--Select--</option>
-                    <option value="55/512">55/512</option>
-                    <option value="1/9">1/9</option>
-                    <option value="1/8">1/8</option>
-                    <option value="144/512">144/512</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q19">
-                <label for="q19">19. How many ways to distribute 10 identical tokens into 5 distinct buckets so that no bucket has more than 4 tokens?</label>
-                <select id="q19" name="q19" required>
-                    <option value="">--Select--</option>
-                    <option value="101">101</option>
-                    <option value="126">126</option>
-                    <option value="252">252</option>
-                    <option value="120">120</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q20">
-                <label for="q20">20. How many ways to select 4 files out of 10 for upload such that at least one file is always file #3?</label>
-                <select id="q20" name="q20" required>
-                    <option value="">--Select--</option>
-                    <option value="84">84</option>
-                    <option value="210">210</option>
-                    <option value="120">120</option>
-                    <option value="36">36</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q21">
-                <label for="q21">21. A team of 6 developers needs to be assigned to 4 different software modules. Each module must have at least one developer, and developers can only work on one module. How many valid assignments exist?</label>
-                <select id="q21" name="q21" required>
-                    <option value="">--Select--</option>
-                    <option value="1560">1,560</option>
-                    <option value="3600">3,600</option>
-                    <option value="720">720</option>
-                    <option value="5400">5,400</option>
-                    <option value="1800">1,800</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q22">
-                <label for="q22">22. A data center assigns 8 tasks to 5 identical processors. Tasks are distinct, but processors are not (i.e., their labels don’t matter). How many non-distinct arrangements are there?</label>
-                <select id="q22" name="q22" required>
-                    <option value="">--Select--</option>
-                    <option value="30">30</option>
-                    <option value="56">56</option>
-                    <option value="120">120</option>
-                    <option value="70">70</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q23">
-                <label for="q23">23. In a system with 10 nodes, any 3 can form a triangle for redundancy. How many distinct triangle connections can be formed?</label>
-                <select id="q23" name="q23" required>
-                    <option value="">--Select--</option>
-                    <option value="120">120</option>
-                    <option value="60">60</option>
-                    <option value="210">210</option>
-                    <option value="45">45</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q24">
-                <label for="q24">24. You are setting a 6-character login code using uppercase letters A–Z and digits 0–9. The code must contain at least 2 digits. How many valid login codes are possible?</label>
-                <select id="q24" name="q24" required>
-                    <option value="">--Select--</option>
-                    <option value="1154984000">1,154,984,000</option>
-                    <option value="2176782336">2,176,782,336</option>
-                    <option value="712882560">712,882,560</option>
-                    <option value="308915776">308,915,776</option>
-                </select>
-            </div>
-            <div class="question-block" id="block-q25">
-                <label for="q25">25. A user selects a password of 8 characters using only lowercase letters (a–z), but the password must not contain any repeated character and must begin and end with a vowel. How many such passwords are there?</label>
-                <select id="q25" name="q25" required>
-                    <option value="">--Select--</option>
-                    <option value="102009600">102,009,600</option>
-                    <option value="5100480">5,100,480</option>
-                    <option value="100800">100,800</option>
-                    <option value="5040">5,040</option>
-                </select>
-            </div>
-            <button type="button" id="prev-btn">Previous</button>
-            <button type="button" id="next2-btn">Next</button>
-        </div>
-        <!-- Page 3: Set Theory Q1 -->
-        <div id="page3" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq1">
-                <label>26. Which of the following are elements of the set { x ∈ ℝ | x² = 9 }?</label><br>
-                <input type="checkbox" name="mq1" value="0"> 0<br>
-                <input type="checkbox" name="mq1" value="-3"> −3<br>
-                <input type="checkbox" name="mq1" value="3"> 3<br>
-                <input type="checkbox" name="mq1" value="9"> 9<br>
-            </div>
-            <button type="button" id="prev3-btn">Previous</button>
-            <button type="button" id="next3-btn">Next</button>
-        </div>
-        <!-- Page 4: Set Theory Q2 -->
-        <div id="page4" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq2">
-                <label>27. Which of these are subsets of ℤ⁻ (negative integers)?</label><br>
-                <input type="checkbox" name="mq2" value="-5,-8,-1"> {−5, −8, −1}<br>
-                <input type="checkbox" name="mq2" value="-3,0,1"> {−3, 0, 1}<br>
-                <input type="checkbox" name="mq2" value="-10,-2"> {−10, −2}<br>
-                <input type="checkbox" name="mq2" value="empty"> {}<br>
-            </div>
-            <button type="button" id="prev4-btn">Previous</button>
-            <button type="button" id="next4-btn">Next</button>
-        </div>
-        <!-- Page 5: Set Theory Q3 -->
-        <div id="page5" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq3">
-                <label>28. Given the sets: A = {2, 4, 6}, B = {4, 6, 8}, C = {2, 8}<br>Which of the following are true?</label><br>
-                <input type="checkbox" name="mq3" value="A∩B={4,6}"> A ∩ B = {4, 6}<br>
-                <input type="checkbox" name="mq3" value="A∪C={2,4,6,8}"> A ∪ C = {2, 4, 6, 8}<br>
-                <input type="checkbox" name="mq3" value="A−B={6,2}"> A − B = {6, 2}<br>
-                <input type="checkbox" name="mq3" value="B−A={8}"> B − A = {8}<br>
-            </div>
-            <button type="button" id="prev5-btn">Previous</button>
-            <button type="button" id="next5-btn">Next</button>
-        </div>
-        <!-- Page 6: Set Theory Q4 -->
-        <div id="page6" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq4">
-                <label>29. Which of these sets are empty?</label><br>
-                <input type="checkbox" name="mq4" value="x2=-1"> {x ∈ ℤ | x² = −1}<br>
-                <input type="checkbox" name="mq4" value="x2=16"> {x ∈ ℝ | x² = 16}<br>
-                <input type="checkbox" name="mq4" value="n<0"> {x ∈ ℕ | x < 0}<br>
-                <input type="checkbox" name="mq4" value="empty"> ∅<br>
-            </div>
-            <button type="button" id="prev6-btn">Previous</button>
-            <button type="button" id="next6-btn">Next</button>
-        </div>
-        <!-- Page 7: Set Theory Q5 -->
-        <div id="page7" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq5">
-                <label>30. Consider the sets:<br>A = {x ∈ ℝ | x³ - 3x = 0}<br>B = {x ∈ ℝ | x² = 4}<br>What is A ∪ B?</label><br>
-                <input type="checkbox" name="mq5" value="empty"> {}<br>
-                <input type="checkbox" name="mq5" value="R"> ℝ<br>
-                <input type="checkbox" name="mq5" value="-2,0,2"> {−2, 0, 2}<br>
-                <input type="checkbox" name="mq5" value="-2,2"> {−2, 2}<br>
-            </div>
-            <button type="button" id="prev7-btn">Previous</button>
-            <button type="button" id="next7-btn">Next</button>
-        </div>
-        <!-- Page 8: Set Theory Q6 -->
-        <div id="page8" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq6">
-                <label>31. If A = {1, 2, 3} and B = {3, 4, 5}, what is A ∩ B?</label><br>
-                <input type="checkbox" name="mq6" value="empty"> {}<br>
-                <input type="checkbox" name="mq6" value="1,2,3,4,5"> {1, 2, 3, 4, 5}<br>
-                <input type="checkbox" name="mq6" value="3"> {3}<br>
-                <input type="checkbox" name="mq6" value="1,3,5"> {1, 3, 5}<br>
-            </div>
-            <button type="button" id="prev8-btn">Previous</button>
-            <button type="button" id="next8-btn">Next</button>
-        </div>
-        <!-- Page 9: Set Theory Q7 -->
-        <div id="page9" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq7">
-                <label>32. Which of the following are true?</label><br>
-                <input type="checkbox" name="mq7" value="A⊆A"> A ⊆ A<br>
-                <input type="checkbox" name="mq7" value="A∩A=A"> A ∩ A = A<br>
-                <input type="checkbox" name="mq7" value="A∪A=A"> A ∪ A = A<br>
-                <input type="checkbox" name="mq7" value="A−A=∅"> A − A = ∅<br>
-            </div>
-            <button type="button" id="prev9-btn">Previous</button>
-            <button type="button" id="next9-btn">Next</button>
-        </div>
-        <!-- Page 10: Set Theory Q8 -->
-        <div id="page10" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq8">
-                <label>33. Let U = {1, 2, 3, ..., 10} be the universal set. If A = {2, 4, 6, 8} and B = {1, 2, 3}, what is the complement of A ∪ B?</label><br>
-                <input type="checkbox" name="mq8" value="empty"> {}<br>
-                <input type="checkbox" name="mq8" value="4,6,8,10"> {4, 6, 8, 10}<br>
-                <input type="checkbox" name="mq8" value="5,7,9"> {5, 7, 9}<br>
-                <input type="checkbox" name="mq8" value="1,3,5,7,9,10"> {1, 3, 5, 7, 9, 10}<br>
-            </div>
-            <button type="button" id="prev10-btn">Previous</button>
-            <button type="button" id="next10-btn">Next</button>
-        </div>
-        <!-- Page 11: Set Theory Q9 -->
-        <div id="page11" class="quiz-page" style="display:none;">
-            <div class="question-block" id="block-mq9">
-                <label>34. Consider the sets:<br>A = {x ∈ ℝ | x² - 1 = 0}<br>B = {x ∈ ℝ | x + 2 = 0}<br>What is A ∩ B?</label><br>
-                <input type="checkbox" name="mq9" value="empty"> {}<br>
-                <input type="checkbox" name="mq9" value="-1,1"> {−1, 1}<br>
-                <input type="checkbox" name="mq9" value="-2,0,2"> {−2, 0, 2}<br>
-                <input type="checkbox" name="mq9" value="-2,2"> {−2, 2}<br>
-            </div>
-            <button type="button" id="prev11-btn">Previous</button>
-            <button type="button" id="next11-btn">Next</button>
-        </div>
-        <!-- Page 12: Function Q1 -->
-        <div id="page12" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>35. Let f: ℝ → ℝ be defined by f(x) = (3x−7)/(x+2). Which of the following is true?</label><br>
-                <select name="func1" required>
-                    <option value="">--Select--</option>
-                    <option value="injective">f is injective (one-to-one)</option>
-                    <option value="not_injective">f is not injective</option>
-                    <option value="bijective">f is bijective (one-to-one and onto)</option>
-                    <option value="not_bijective">f is not bijective</option>
-                </select>
-                <br>
-                <label>What is the domain of f⁻¹?</label><br>
-                <select name="func1_domain" required>
-                    <option value="">--Select--</option>
-                    <option value="R_minus_-2">ℝ \\ {-2}</option>
-                    <option value="R">ℝ</option>
-                    <option value="R_minus_7/3">ℝ \\ {7/3}</option>
-                </select>
-                <br>
-                <label>What is the range of f⁻¹?</label><br>
-                <select name="func1_range" required>
-                    <option value="">--Select--</option>
-                    <option value="R_minus_7/3">ℝ \\ {7/3}</option>
-                    <option value="R">ℝ</option>
-                    <option value="R_minus_-2">ℝ \\ {-2}</option>
-                </select>
-            </div>
-            <button type="button" id="prev12-btn">Previous</button>
-            <button type="button" id="next12-btn">Next</button>
-        </div>
-        <!-- Page 13: Function Q2 -->
-        <div id="page13" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>36. The function f: ℤ → ℤ defined by f(n) = n² + 1 is:</label><br>
-                <select name="func2" required>
-                    <option value="">--Select--</option>
-                    <option value="injective">Injective</option>
-                    <option value="surjective">Surjective</option>
-                    <option value="bijective">Bijective</option>
-                    <option value="neither">Neither</option>
-                </select>
-            </div>
-            <button type="button" id="prev13-btn">Previous</button>
-            <button type="button" id="next13-btn">Next</button>
-        </div>
-        <!-- Page 14: Function Q3 -->
-        <div id="page14" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>37. Let f: ℝ → ℝ be given by f(x) = x³ + x. Which of the following is true?</label><br>
-                <select name="func3" required>
-                    <option value="">--Select--</option>
-                    <option value="bijective">f is bijective and has an inverse</option>
-                    <option value="not_bijective">f is not bijective</option>
-                    <option value="injective_only">f is injective only</option>
-                    <option value="surjective_only">f is surjective only</option>
-                </select>
-            </div>
-            <button type="button" id="prev14-btn">Previous</button>
-            <button type="button" id="next14-btn">Next</button>
-        </div>
-        <!-- Page 15: Function Q4 -->
-        <div id="page15" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>38. Let f(x) = sin(x) and g(x) = x². Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func4" value="fog_function">f∘g is a function<br>
-                <input type="checkbox" name="func4" value="gof_function">g∘f is a function<br>
-                <input type="checkbox" name="func4" value="fog_all_R">Domain of f∘g is ℝ<br>
-                <input type="checkbox" name="func4" value="gof_all_R">Domain of g∘f is ℝ<br>
-            </div>
-            <button type="button" id="prev15-btn">Previous</button>
-            <button type="button" id="next15-btn">Next</button>
-        </div>
-        <!-- Page 16: Function Q5 -->
-        <div id="page16" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>39. For f: ℝ∖{0} → ℝ, f(x) = 1/x, which of the following are true?</label><br>
-                <input type="checkbox" name="func5" value="f_inverse">f is its own inverse<br>
-                <input type="checkbox" name="func5" value="f_not_inverse">f is not its own inverse<br>
-                <input type="checkbox" name="func5" value="f_fx_x">f(f(x)) = x for all x ≠ 0<br>
-            </div>
-            <button type="button" id="prev16-btn">Previous</button>
-            <button type="button" id="next16-btn">Next</button>
-        </div>
-        <!-- Page 17: Function Q6 -->
-        <div id="page17" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>40. f(x) = x² − 4x + 7. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func6" value="injective">f is injective<br>
-                <input type="checkbox" name="func6" value="surjective">f is surjective<br>
-                <input type="checkbox" name="func6" value="not_injective">f is not injective<br>
-                <input type="checkbox" name="func6" value="not_surjective">f is not surjective<br>
-            </div>
-            <button type="button" id="prev17-btn">Previous</button>
-            <button type="button" id="next17-btn">Next</button>
-        </div>
-        <!-- Page 18: Function Q7 -->
-        <div id="page18" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>41. f(x) = ln(x), x &gt; 0. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func7" value="injective">f is injective<br>
-                <input type="checkbox" name="func7" value="surjective">f is surjective onto ℝ<br>
-                <input type="checkbox" name="func7" value="inverse_exp">Inverse is exp(x)<br>
-            </div>
-            <button type="button" id="prev18-btn">Previous</button>
-            <button type="button" id="next18-btn">Next</button>
-        </div>
-        <!-- Page 19: Function Q8 -->
-        <div id="page19" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>42. f(x) = |2x−5|. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func8" value="invertible">f is invertible on ℝ<br>
-                <input type="checkbox" name="func8" value="not_invertible">f is not invertible on ℝ<br>
-                <input type="checkbox" name="func8" value="invertible_restricted">f is invertible if domain is restricted<br>
-            </div>
-            <button type="button" id="prev19-btn">Previous</button>
-            <button type="button" id="next19-btn">Next</button>
-        </div>
-        <!-- Page 20: Function Q9 -->
-        <div id="page20" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>43. f(x) = { x+2 if x&lt;0; x² if x≥0 }. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func9" value="continuous">f is continuous at x=0<br>
-                <input type="checkbox" name="func9" value="not_continuous">f is not continuous at x=0<br>
-                <input type="checkbox" name="func9" value="is_function">f is a function<br>
-                <input type="checkbox" name="func9" value="not_function">f is not a function<br>
-            </div>
-            <button type="button" id="prev20-btn">Previous</button>
-            <button type="button" id="next20-btn">Next</button>
-        </div>
-        <!-- Page 21: Function Q10 -->
-        <div id="page21" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>44. f: ℕ → ℕ, f(n) = number of digits in n!. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func10" value="injective">f is injective<br>
-                <input type="checkbox" name="func10" value="surjective">f is surjective<br>
-                <input type="checkbox" name="func10" value="not_injective">f is not injective<br>
-                <input type="checkbox" name="func10" value="not_surjective">f is not surjective<br>
-            </div>
-            <button type="button" id="prev21-btn">Previous</button>
-            <button type="button" id="next21-btn">Next</button>
-        </div>
-        <!-- Page 22: Function Q11 -->
-        <div id="page22" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>45. If f∘g is injective, then f must be injective.</label><br>
-                <select name="func11" required>
-                    <option value="">--Select--</option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select>
-            </div>
-            <button type="button" id="prev22-btn">Previous</button>
-            <button type="button" id="next22-btn">Next</button>
-        </div>
-        <!-- Page 23: Function Q12 -->
-        <div id="page23" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>46. If f∘g is surjective, then g must be surjective.</label><br>
-                <select name="func12" required>
-                    <option value="">--Select--</option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select>
-            </div>
-            <button type="button" id="prev23-btn">Previous</button>
-            <button type="button" id="next23-btn">Next</button>
-        </div>
-        <!-- Page 24: Function Q13 -->
-        <div id="page24" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>47. Let f: A→B and g: B→C be bijective. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func13" value="gof_bijective">g∘f is bijective<br>
-                <input type="checkbox" name="func13" value="inverse_composition"> (g∘f)⁻¹ = f⁻¹∘g⁻¹<br>
-            </div>
-            <button type="button" id="prev24-btn">Previous</button>
-            <button type="button" id="next24-btn">Next</button>
-        </div>
-        <!-- Page 25: Function Q14 -->
-        <div id="page25" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>48. f(x) = tan(x). Is it possible to define f⁻¹(x) on (−π/2, π/2)?</label><br>
-                <select name="func14" required>
-                    <option value="">--Select--</option>
-                    <option value="yes">Yes, f⁻¹(x) = arctan(x)</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <button type="button" id="prev25-btn">Previous</button>
-            <button type="button" id="next25-btn">Next</button>
-        </div>
-        <!-- Page 26: Function Q15 -->
-        <div id="page26" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>49. The set of all functions from ℝ→ℝ under function composition is a group.</label><br>
-                <select name="func15" required>
-                    <option value="">--Select--</option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select>
-            </div>
-            <button type="button" id="prev26-btn">Previous</button>
-            <button type="button" id="next26-btn">Next</button>
-        </div>
-        <!-- Page 27: Function Q16 -->
-        <div id="page27" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>50. f(x)=4ˣ. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func16" value="injective">f is injective<br>
-                <input type="checkbox" name="func16" value="surjective">f is surjective<br>
-                <input type="checkbox" name="func16" value="inverse_log">Inverse is log₄(x)<br>
-            </div>
-            <button type="button" id="prev27-btn">Previous</button>
-            <button type="button" id="next27-btn">Next</button>
-        </div>
-        <!-- Page 28: Function Q17 -->
-        <div id="page28" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>51. f(x)={x² if x&lt;0; 3x+1 if x≥0}. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func17" value="continuous">f is continuous at x=0<br>
-                <input type="checkbox" name="func17" value="not_continuous">f is not continuous at x=0<br>
-                <input type="checkbox" name="func17" value="differentiable">f is differentiable at x=0<br>
-                <input type="checkbox" name="func17" value="not_differentiable">f is not differentiable at x=0<br>
-            </div>
-            <button type="button" id="prev28-btn">Previous</button>
-            <button type="button" id="next28-btn">Next</button>
-        </div>
-        <!-- Page 29: Function Q18 -->
-        <div id="page29" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>52. f(x) = x⁵ + x + 1. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func18" value="injective">f is injective<br>
-                <input type="checkbox" name="func18" value="has_inverse">f has an inverse<br>
-                <input type="checkbox" name="func18" value="not_injective">f is not injective<br>
-            </div>
-            <button type="button" id="prev29-btn">Previous</button>
-            <button type="button" id="next29-btn">Next</button>
-        </div>
-        <!-- Page 30: Function Q19 -->
-        <div id="page30" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>53. f: A→B, for every b∈B, exactly two elements in A map to b. Which of the following are true?</label><br>
-                <input type="checkbox" name="func19" value="function">f is a function<br>
-                <input type="checkbox" name="func19" value="invertible">f is invertible<br>
-                <input type="checkbox" name="func19" value="not_invertible">f is not invertible<br>
-            </div>
-            <button type="button" id="prev30-btn">Previous</button>
-            <button type="button" id="next30-btn">Next</button>
-        </div>
-        <!-- Page 31: Function Q20 -->
-        <div id="page31" class="quiz-page" style="display:none;">
-            <div class="question-block">
-                <label>54. f(x) = ⎣x/2⎦. Which of the following are true? (Select all that apply)</label><br>
-                <input type="checkbox" name="func20" value="injective">f is injective<br>
-                <input type="checkbox" name="func20" value="surjective">f is surjective onto ℤ<br>
-                <input type="checkbox" name="func20" value="not_injective">f is not injective<br>
-                <input type="checkbox" name="func20" value="not_surjective">f is not surjective onto ℤ<br>
-            </div>
-            <button type="button" id="prev31-btn">Previous</button>
-            <button type="submit" id="submit-btn2">Submit</button>
-        </div>
-    </form>
-    <div id="result"></div>
-    <div id="feedback"></div>
+        <form id="quiz-form" autocomplete="off">
+            <!-- Questions will be injected here by JS -->
+        </form>
+        <div id="result"></div>
+        <div id="feedback"></div>
+    </div>
+    <div class="quiz-sidebar">
+        <h3>Questions</h3>
+        <div class="qnav" id="qnav"></div>
+    </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const page1 = document.getElementById('page1');
-        const page2 = document.getElementById('page2');
-        const nextBtn = document.getElementById('next-btn');
-        const prevBtn = document.getElementById('prev-btn');
+    const QUESTIONS = [
+        // 1-8
+        {
+            text: 'For $f(n)=4n\\log n+9n$, which witness pair $(c,n_0)$ <b>cannot</b> certify $f(n)=O(n\\log n)$?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $c=15,\\;n_0=1$'},
+                {v:'b', t:'b) $c=5,\\;n_0=10$'},
+                {v:'c', t:'c) $c=2,\\;n_0=1$'},
+                {v:'d', t:'d) $c=8,\\;n_0=3$'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: '$g(n)=3n^2\\log n+7n^{1.5}$.  The tightest upper bound below is',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $O(n^{2.5})$'},
+                {v:'b', t:'b) $O(n^2\\log n)$'},
+                {v:'c', t:'c) $O(n^2)$'},
+                {v:'d', t:'d) $O(n^3)$'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Which <b>must</b> hold if $f(n)=\\Theta(h(n))$?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $\\lim_{n\\to\\infty}f/h=0$'},
+                {v:'b', t:'b) $f\\in O(h)$ and $h\\in O(f)$'},
+                {v:'c', t:'c) $f\\in o(h)$'},
+                {v:'d', t:'d) $f\\in \\omega(h)$'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Let $T(n)=2T(n/2)+n/\\log n$ for $n\\ge 2$.  Using Master Theorem, $T(n)=$',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $\\Theta(n)$'},
+                {v:'b', t:'b) $\\Theta(n\\log n)$'},
+                {v:'c', t:'c) $\\Theta(n\\log\\log n)$'},
+                {v:'d', t:'d) $\\Theta(n\\log^2 n)$'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'Which statement is <b>false</b>?  If $f(n)=O(g(n))$ and $g(n)=O(h(n))$ then',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $f=O(h)$'},
+                {v:'b', t:'b) $h=\\Omega(f)$'},
+                {v:'c', t:'c) $h=o(f)$'},
+                {v:'d', t:'d) $f=O(g)$'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'You have an algorithm running in $T(n)=n^{\\log_2 7}$.  Doubling the input multiplies time by',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 7'},
+                {v:'b', t:'b) $7^{\\log_2 2}$'},
+                {v:'c', t:'c) $2^{\\log_2 7}$'},
+                {v:'d', t:'d) $2\\log_2 7$'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'Which function grows <b>slowest</b>?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $n^{0.9}\\log n$'},
+                {v:'b', t:'b) $\\sqrt n\\log^2 n$'},
+                {v:'c', t:'c) $n^{0.75}$'},
+                {v:'d', t:'d) $e^{\\sqrt{\\log n}}$'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'If $f(n)=O(n)$ and $g(n)=\\omega(n)$, which is always true?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $f(n)+g(n)=\\Theta(g(n))$'},
+                {v:'b', t:'b) $f(n)g(n)=O(g(n))$'},
+                {v:'c', t:'c) $g(n)/f(n)=O(1)$'},
+                {v:'d', t:'d) $f(n)=\\Theta(g(n))$'}
+            ],
+            answer: 'a'
+        },
+        // 9-20
+        {
+            text: 'How many 5-digit numbers use digits 0–9 with <b>exactly two</b> even digits and no repetition?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 5040'},
+                {v:'b', t:'b) 4536'},
+                {v:'c', t:'c) 18900'},
+                {v:'d', t:'d) 15120'}
+            ],
+            answer: 'd'
+        },
+        {
+            text: 'Choose 4 non-consecutive integers from $\\{1,\\dots,20\\}$.  Ways?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 4845'},
+                {v:'b', t:'b) 484'},
+                {v:'c', t:'c) 4845 × 4'},
+                {v:'d', t:'d) 7315'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Eight identical balls into 4 distinct boxes, <b>at most</b> 3 per box. How many allocations?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 20'},
+                {v:'b', t:'b) 34'},
+                {v:'c', t:'c) 30'},
+                {v:'d', t:'d) 28'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'Arrange letters of “ASSESSMENT” so that no two S’s are adjacent.',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 50400'},
+                {v:'b', t:'b) 75600'},
+                {v:'c', t:'c) 100800'},
+                {v:'d', t:'d) 120960'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: '# of ternary strings length 10 with <i>no</i> substring “12”.',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $2^{10}$'},
+                {v:'b', t:'b) $Fib_{12}$'},
+                {v:'c', t:'c) 2 × 3⁹'},
+                {v:'d', t:'d) 3 × 2⁹'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'A 6-wheel lock shows digits 0–9.  Code must start with a prime digit and contain <b>at least one</b> 0. How many codes?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $4\\cdot10^5-4\\cdot9^5$'},
+                {v:'b', t:'b) $5\\cdot9^5$'},
+                {v:'c', t:'c) $4\\cdot10^5-4\\cdot9^5$'},
+                {v:'d', t:'d) $5\\cdot10^5-5\\cdot9^5$'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'Distribute 10 distinct tasks among 4 <b>indistinguishable</b> processors, none idle.',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $S(10,4)$'},
+                {v:'b', t:'b) $4^{10}$'},
+                {v:'c', t:'c) $\\frac{10!}{(2!)^5}$'},
+                {v:'d', t:'d) $P(10,4)$'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'Select a 6-person committee from 10 students if two rivals cannot both serve.',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 210'},
+                {v:'b', t:'b) 252'},
+                {v:'c', t:'c) 196'},
+                {v:'d', t:'d) 240'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'How many surjective functions from a 4-element set onto a 3-element set?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 18'},
+                {v:'b', t:'b) 36'},
+                {v:'c', t:'c) 24'},
+                {v:'d', t:'d) 6'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'Ways to seat 5 couples in a line so that <b>exactly</b> 3 couples sit together?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 14400'},
+                {v:'b', t:'b) 28800'},
+                {v:'c', t:'c) 17280'},
+                {v:'d', t:'d) 8640'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: '# of solutions to $x_1+x_2+x_3=25$ with $x_i\\ge5$ and $x_2\\le12$.',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 105'},
+                {v:'b', t:'b) 91'},
+                {v:'c', t:'c) 78'},
+                {v:'d', t:'d) 66'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Choose 5 squares on a chessboard no two in same row or column.  Ways?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 64P5'},
+                {v:'b', t:'b) 8P5 × 8C5'},
+                {v:'c', t:'c) 8P5'},
+                {v:'d', t:'d) 8C5 × 5!'}
+            ],
+            answer: 'd'
+        },
+        // 21-28
+        {
+            text: 'Let $f:\\mathbb R\\to\\mathbb R$, $f(x)=\\dfrac{5x-1}{2x+3}$.  Domain of $f^{-1}$?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $\\mathbb R\\backslash\\{-1.5\\}$'},
+                {v:'b', t:'b) $\\mathbb R\\backslash\\{0.4\\}$'},
+                {v:'c', t:'c) $\\mathbb R$'},
+                {v:'d', t:'d) $\\mathbb R\\backslash\\{-0.6\\}$'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'Relation $R$ on $\\mathbb Z$: $aRb\\iff a-b$ divisible by 6.  R is',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) Equivalence'},
+                {v:'b', t:'b) Symmetric only'},
+                {v:'c', t:'c) Partial order'},
+                {v:'d', t:'d) Antisymmetric'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'Sequence: $a_0=1,\\; a_{n+1}=a_n^2+1$.  Smallest $n$ with $a_n>100$?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 3'},
+                {v:'b', t:'b) 4'},
+                {v:'c', t:'c) 5'},
+                {v:'d', t:'d) 6'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'If $f\\circ g$ is injective, which must hold?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $f$ injective'},
+                {v:'b', t:'b) $g$ injective'},
+                {v:'c', t:'c) $f$ surjective'},
+                {v:'d', t:'d) $g$ surjective'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Let $f(x)=x^3+x$.  $f$ is',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) Injective but not surjective'},
+                {v:'b', t:'b) Surjective but not injective'},
+                {v:'c', t:'c) Bijective'},
+                {v:'d', t:'d) Neither'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'For sets $A,B\\subseteq U$, which identity always true?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $(A\\cup B)^c=A^c\\cap B^c$'},
+                {v:'b', t:'b) $A-(B\\cap C)=(A-B)\\cap(A-C)$'},
+                {v:'c', t:'c) $A\\Delta B=(A\\cup B)-(A\\cap B)$'},
+                {v:'d', t:'d) All of these'}
+            ],
+            answer: 'd'
+        },
+        {
+            text: 'In a DFA with 5 states, max edges (incl. self-loops) labelled with a binary alphabet is',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 10'},
+                {v:'b', t:'b) 25'},
+                {v:'c', t:'c) 50'},
+                {v:'d', t:'d) 20'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'If $T(n)=T(\\lfloor n/3\\rfloor)+T(\\lfloor 2n/3\\rfloor)+n$, then $T(n)=$',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) Θ(n log n)'},
+                {v:'b', t:'b) Θ(n)'},
+                {v:'c', t:'c) Θ(n log log n)'},
+                {v:'d', t:'d) Θ(n²)'}
+            ],
+            answer: 'a'
+        },
+        // 29-35
+        {
+            text: 'A simple graph with 12 vertices, all degrees ≥ 7.  Minimum number of edges?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 42'},
+                {v:'b', t:'b) 36'},
+                {v:'c', t:'c) 40'},
+                {v:'d', t:'d) 45'}
+            ],
+            answer: 'a'
+        },
+        {
+            text: 'In any simple planar graph, $E \\le$',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) $2V-4$'},
+                {v:'b', t:'b) $3V-6$'},
+                {v:'c', t:'c) $5V-10$'},
+                {v:'d', t:'d) $V+E$'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Adjacency matrix of an undirected graph is always',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) Skew-symmetric'},
+                {v:'b', t:'b) Upper-triangular'},
+                {v:'c', t:'c) Symmetric'},
+                {v:'d', t:'d) Diagonal'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'A tree with 2 vertices of degree 4 and all others degree 1 has how many vertices?',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 6'},
+                {v:'b', t:'b) 7'},
+                {v:'c', t:'c) 8'},
+                {v:'d', t:'d) 9'}
+            ],
+            answer: 'c'
+        },
+        {
+            text: 'Number of Hamilton cycles in $K_6$: ',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) 60'},
+                {v:'b', t:'b) 120'},
+                {v:'c', t:'c) 360'},
+                {v:'d', t:'d) 720'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'Chromatic number of a cycle $C_n$ is 2 when n is',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) Prime'},
+                {v:'b', t:'b) Even >2'},
+                {v:'c', t:'c) Odd'},
+                {v:'d', t:'d) 3'}
+            ],
+            answer: 'b'
+        },
+        {
+            text: 'For directed graph G with adjacency matrix $A$, the (i,j) entry of $A^3$ equals',
+            type: 'select',
+            options: [
+                {v:'a', t:'a) # paths length 3 from i to j'},
+                {v:'b', t:'b) # walks length 3 from i to j'},
+                {v:'c', t:'c) 1 if edge (i,j) exists'},
+                {v:'d', t:'d) Degree of vertex i'}
+            ],
+            answer: 'b'
+        }
+    ];
 
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                page1.style.display = 'none';
-                page2.style.display = '';
-                window.scrollTo(0, 0);
-            });
+    // Render questions/pages
+    function renderQuestions() {
+        const form = document.getElementById('quiz-form');
+        form.innerHTML = '';
+        for (let i = 0; i < QUESTIONS.length; ++i) {
+            const q = QUESTIONS[i];
+            const div = document.createElement('div');
+            div.className = 'quiz-page question-block';
+            div.id = 'page' + (i+1);
+            div.style.display = i === 0 ? '' : 'none';
+            div.setAttribute('data-qidx', i);
+
+            // Question text
+            const label = document.createElement('label');
+            label.innerHTML = `<b>Q${i+1}.</b> ${q.text}`;
+            div.appendChild(label);
+            div.appendChild(document.createElement('br'));
+
+            // Input
+            if (q.type === 'select') {
+                const sel = document.createElement('select');
+                sel.name = 'q' + (i+1);
+                sel.innerHTML = `<option value="">--Select--</option>` +
+                    q.options.map(opt => `<option value="${opt.v}">${opt.t}</option>`).join('');
+                div.appendChild(sel);
+            } else if (q.type === 'input') {
+                const inp = document.createElement('input');
+                inp.type = 'text';
+                inp.name = 'q' + (i+1);
+                inp.size = 8;
+                inp.autocomplete = 'off';
+                div.appendChild(inp);
+            }
+
+            // Navigation
+            div.appendChild(document.createElement('br'));
+            if (i > 0) {
+                const prevBtn = document.createElement('button');
+                prevBtn.type = 'button';
+                prevBtn.textContent = 'Previous';
+                prevBtn.onclick = () => showPage(i);
+                div.appendChild(prevBtn);
+            }
+            if (i < QUESTIONS.length-1) {
+                const nextBtn = document.createElement('button');
+                nextBtn.type = 'button';
+                nextBtn.textContent = 'Next';
+                nextBtn.onclick = () => showPage(i+2);
+                div.appendChild(nextBtn);
+            } else {
+                const submitBtn = document.createElement('button');
+                submitBtn.type = 'submit';
+                submitBtn.id = 'submit-btn';
+                submitBtn.textContent = 'Submit';
+                div.appendChild(submitBtn);
+            }
+            form.appendChild(div);
         }
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                page2.style.display = 'none';
-                page1.style.display = '';
-                window.scrollTo(0, 0);
-            });
+    }
+
+    // Render sidebar navigation
+    function renderSidebar() {
+        const qnav = document.getElementById('qnav');
+        qnav.innerHTML = '';
+        for (let i = 0; i < QUESTIONS.length; ++i) {
+            const btn = document.createElement('div');
+            btn.className = 'qnav-btn';
+            btn.textContent = (i+1);
+            btn.setAttribute('data-qnav', i+1);
+            btn.onclick = () => showPage(i+1);
+            qnav.appendChild(btn);
         }
-        // Add navigation for new pages
-        const pages = [
-            document.getElementById('page1'),
-            document.getElementById('page2'),
-            document.getElementById('page3'),
-            document.getElementById('page4'),
-            document.getElementById('page5'),
-            document.getElementById('page6'),
-            document.getElementById('page7'),
-            document.getElementById('page8'),
-            document.getElementById('page9'),
-            document.getElementById('page10'),
-            document.getElementById('page11'),
-            document.getElementById('page12'),
-            document.getElementById('page13'),
-            document.getElementById('page14'),
-            document.getElementById('page15'),
-            document.getElementById('page16'),
-            document.getElementById('page17'),
-            document.getElementById('page18'),
-            document.getElementById('page19'),
-            document.getElementById('page20'),
-            document.getElementById('page21'),
-            document.getElementById('page22'),
-            document.getElementById('page23'),
-            document.getElementById('page24'),
-            document.getElementById('page25'),
-            document.getElementById('page26'),
-            document.getElementById('page27'),
-            document.getElementById('page28'),
-            document.getElementById('page29'),
-            document.getElementById('page30'),
-            document.getElementById('page31'),
-        ];
-        // Helper to show only one page at a time
-        function showPage(idx) {
-            pages.forEach((p, i) => { if (p) p.style.display = (i === idx ? '' : 'none'); });
-            window.scrollTo(0, 0);
+    }
+
+    // Show only one page at a time
+    function showPage(idx) {
+        for (let i = 1; i <= QUESTIONS.length; ++i) {
+            const pg = document.getElementById('page'+i);
+            if (pg) pg.style.display = (i === idx ? '' : 'none');
         }
-        // Navigation for page 1 and 2
-        if (document.getElementById('next-btn')) {
-            document.getElementById('next-btn').addEventListener('click', function() { showPage(1); });
+        // Highlight sidebar
+        document.querySelectorAll('.qnav-btn').forEach((el, i) => {
+            el.classList.toggle('active', i+1 === idx);
+        });
+    }
+
+    // Timer logic
+    let timer = null, timerSeconds = 0, timerStarted = false;
+    function startTimer(duration) {
+        timerSeconds = duration;
+        timerStarted = true;
+        document.getElementById('start-timer-btn').disabled = true;
+        updateTimerDisplay();
+        timer = setInterval(() => {
+            timerSeconds--;
+            updateTimerDisplay();
+            if (timerSeconds <= 0) {
+                clearInterval(timer);
+                timerStarted = false;
+                document.getElementById('timer-display').textContent = "Time's up!";
+                submitQuiz(true);
+            }
+        }, 1000);
+    }
+    function updateTimerDisplay() {
+        const min = Math.floor(timerSeconds/60), sec = timerSeconds%60;
+        document.getElementById('timer-display').textContent = `Time left: ${min}:${sec.toString().padStart(2,'0')}`;
+    }
+
+    // Quiz submit and grading
+    function submitQuiz(auto=false) {
+        // Remove requireds so form always submits
+        document.querySelectorAll('[required]').forEach(el=>el.removeAttribute('required'));
+        // Gather answers
+        const form = document.getElementById('quiz-form');
+        const data = new FormData(form);
+        let score = 0;
+        let correctArr = [];
+        for (let i = 0; i < QUESTIONS.length; ++i) {
+            const q = QUESTIONS[i];
+            let userAns = (data.get('q'+(i+1))||'').trim();
+            let isCorrect = (userAns === q.answer);
+            correctArr.push(isCorrect);
+            if (isCorrect) score++;
         }
-        if (document.getElementById('prev-btn')) {
-            document.getElementById('prev-btn').addEventListener('click', function() { showPage(0); });
+        // Mark answers
+        for (let i = 0; i < QUESTIONS.length; ++i) {
+            const block = document.getElementById('page'+(i+1));
+            block.classList.remove('correct','incorrect');
+            if (correctArr[i]) block.classList.add('correct');
+            else block.classList.add('incorrect');
         }
-        // Navigation for all pages (explicitly for each page)
-        if (document.getElementById('next2-btn')) document.getElementById('next2-btn').addEventListener('click', function() { showPage(2); });
-        if (document.getElementById('prev3-btn')) document.getElementById('prev3-btn').addEventListener('click', function() { showPage(1); });
-        if (document.getElementById('next3-btn')) document.getElementById('next3-btn').addEventListener('click', function() { showPage(3); });
-        if (document.getElementById('prev4-btn')) document.getElementById('prev4-btn').addEventListener('click', function() { showPage(2); });
-        if (document.getElementById('next4-btn')) document.getElementById('next4-btn').addEventListener('click', function() { showPage(4); });
-        if (document.getElementById('prev5-btn')) document.getElementById('prev5-btn').addEventListener('click', function() { showPage(3); });
-        if (document.getElementById('next5-btn')) document.getElementById('next5-btn').addEventListener('click', function() { showPage(5); });
-        if (document.getElementById('prev6-btn')) document.getElementById('prev6-btn').addEventListener('click', function() { showPage(4); });
-        if (document.getElementById('next6-btn')) document.getElementById('next6-btn').addEventListener('click', function() { showPage(6); });
-        if (document.getElementById('prev7-btn')) document.getElementById('prev7-btn').addEventListener('click', function() { showPage(5); });
-        if (document.getElementById('next7-btn')) document.getElementById('next7-btn').addEventListener('click', function() { showPage(7); });
-        if (document.getElementById('prev8-btn')) document.getElementById('prev8-btn').addEventListener('click', function() { showPage(6); });
-        if (document.getElementById('next8-btn')) document.getElementById('next8-btn').addEventListener('click', function() { showPage(8); });
-        if (document.getElementById('prev9-btn')) document.getElementById('prev9-btn').addEventListener('click', function() { showPage(7); });
-        if (document.getElementById('next9-btn')) document.getElementById('next9-btn').addEventListener('click', function() { showPage(9); });
-        if (document.getElementById('prev10-btn')) document.getElementById('prev10-btn').addEventListener('click', function() { showPage(8); });
-        if (document.getElementById('next10-btn')) document.getElementById('next10-btn').addEventListener('click', function() { showPage(10); });
-        if (document.getElementById('prev11-btn')) document.getElementById('prev11-btn').addEventListener('click', function() { showPage(9); });
-        if (document.getElementById('next11-btn')) document.getElementById('next11-btn').addEventListener('click', function() { showPage(11); });
-        if (document.getElementById('prev12-btn')) document.getElementById('prev12-btn').addEventListener('click', function() { showPage(10); });
-        if (document.getElementById('next12-btn')) document.getElementById('next12-btn').addEventListener('click', function() { showPage(12); });
-        if (document.getElementById('prev13-btn')) document.getElementById('prev13-btn').addEventListener('click', function() { showPage(11); });
-        if (document.getElementById('next13-btn')) document.getElementById('next13-btn').addEventListener('click', function() { showPage(13); });
-        if (document.getElementById('prev14-btn')) document.getElementById('prev14-btn').addEventListener('click', function() { showPage(12); });
-        if (document.getElementById('next14-btn')) document.getElementById('next14-btn').addEventListener('click', function() { showPage(14); });
-        if (document.getElementById('prev15-btn')) document.getElementById('prev15-btn').addEventListener('click', function() { showPage(13); });
-        if (document.getElementById('next15-btn')) document.getElementById('next15-btn').addEventListener('click', function() { showPage(15); });
-        if (document.getElementById('prev16-btn')) document.getElementById('prev16-btn').addEventListener('click', function() { showPage(14); });
-        if (document.getElementById('next16-btn')) document.getElementById('next16-btn').addEventListener('click', function() { showPage(16); });
-        if (document.getElementById('prev17-btn')) document.getElementById('prev17-btn').addEventListener('click', function() { showPage(15); });
-        if (document.getElementById('next17-btn')) document.getElementById('next17-btn').addEventListener('click', function() { showPage(17); });
-        if (document.getElementById('prev18-btn')) document.getElementById('prev18-btn').addEventListener('click', function() { showPage(16); });
-        if (document.getElementById('next18-btn')) document.getElementById('next18-btn').addEventListener('click', function() { showPage(18); });
-        if (document.getElementById('prev19-btn')) document.getElementById('prev19-btn').addEventListener('click', function() { showPage(17); });
-        if (document.getElementById('next19-btn')) document.getElementById('next19-btn').addEventListener('click', function() { showPage(19); });
-        if (document.getElementById('prev20-btn')) document.getElementById('prev20-btn').addEventListener('click', function() { showPage(18); });
-        if (document.getElementById('next20-btn')) document.getElementById('next20-btn').addEventListener('click', function() { showPage(20); });
-        if (document.getElementById('prev21-btn')) document.getElementById('prev21-btn').addEventListener('click', function() { showPage(19); });
-        if (document.getElementById('next21-btn')) document.getElementById('next21-btn').addEventListener('click', function() { showPage(21); });
-        if (document.getElementById('prev22-btn')) document.getElementById('prev22-btn').addEventListener('click', function() { showPage(20); });
-        if (document.getElementById('next22-btn')) document.getElementById('next22-btn').addEventListener('click', function() { showPage(22); });
-        if (document.getElementById('prev23-btn')) document.getElementById('prev23-btn').addEventListener('click', function() { showPage(21); });
-        if (document.getElementById('next23-btn')) document.getElementById('next23-btn').addEventListener('click', function() { showPage(23); });
-        if (document.getElementById('prev24-btn')) document.getElementById('prev24-btn').addEventListener('click', function() { showPage(22); });
-        if (document.getElementById('next24-btn')) document.getElementById('next24-btn').addEventListener('click', function() { showPage(24); });
-        if (document.getElementById('prev25-btn')) document.getElementById('prev25-btn').addEventListener('click', function() { showPage(23); });
-        if (document.getElementById('next25-btn')) document.getElementById('next25-btn').addEventListener('click', function() { showPage(25); });
-        if (document.getElementById('prev26-btn')) document.getElementById('prev26-btn').addEventListener('click', function() { showPage(24); });
-        if (document.getElementById('next26-btn')) document.getElementById('next26-btn').addEventListener('click', function() { showPage(26); });
-        if (document.getElementById('prev27-btn')) document.getElementById('prev27-btn').addEventListener('click', function() { showPage(25); });
-        if (document.getElementById('next27-btn')) document.getElementById('next27-btn').addEventListener('click', function() { showPage(27); });
-        if (document.getElementById('prev28-btn')) document.getElementById('prev28-btn').addEventListener('click', function() { showPage(26); });
-        if (document.getElementById('next28-btn')) document.getElementById('next28-btn').addEventListener('click', function() { showPage(28); });
-        if (document.getElementById('prev29-btn')) document.getElementById('prev29-btn').addEventListener('click', function() { showPage(27); });
-        if (document.getElementById('next29-btn')) document.getElementById('next29-btn').addEventListener('click', function() { showPage(29); });
-        if (document.getElementById('prev30-btn')) document.getElementById('prev30-btn').addEventListener('click', function() { showPage(28); });
-        if (document.getElementById('next30-btn')) document.getElementById('next30-btn').addEventListener('click', function() { showPage(30); });
-        if (document.getElementById('prev31-btn')) document.getElementById('prev31-btn').addEventListener('click', function() { showPage(29); });
-        // Submit button handler for last page
-        if (document.getElementById('submit-btn2')) {
-            document.getElementById('submit-btn2').addEventListener('click', function() {
-                setTimeout(function() {
-                    document.getElementById('result').scrollIntoView({behavior: "smooth"});
-                }, 100);
-            });
+        // Mark sidebar
+        document.querySelectorAll('.qnav-btn').forEach((el, i) => {
+            el.classList.remove('correct','incorrect');
+            if (correctArr[i]) el.classList.add('correct');
+            else el.classList.add('incorrect');
+        });
+        // Show result
+        document.getElementById('result').innerHTML =
+            `<h2>Score: ${score} / ${QUESTIONS.length} (${Math.round(score*100/QUESTIONS.length)}%)</h2>`;
+        // Feedback: list correct/incorrect
+        let fb = '';
+        for (let i = 0; i < QUESTIONS.length; ++i) {
+            fb += `<div style="margin-bottom:4px;">
+            <b>Q${i+1}:</b> <span style="color:${correctArr[i]?'#2ecc40':'#ff4136'}">${correctArr[i]?'Correct':'Incorrect'}</span>
+            ${!correctArr[i]?`<br><span style="font-size:0.95em;">Correct answer: <b>${QUESTIONS[i].answer}</b></span>`:''}
+        </div>`;
         }
+        document.getElementById('feedback').innerHTML = fb;
+        // Scroll to top
+        window.scrollTo(0,0);
+        // Disable all inputs
+        document.querySelectorAll('input,select,button').forEach(el=>el.disabled=true);
+        if (timer) clearInterval(timer);
+    }
+
+    // Main
+    document.addEventListener('DOMContentLoaded', function() {
+        renderQuestions();
+        renderSidebar();
+        showPage(1);
+
+        // Sidebar highlight on load
+        document.querySelectorAll('.qnav-btn')[0].classList.add('active');
+
+        // Timer
+        document.getElementById('start-timer-btn').onclick = function() {
+            // 20 minutes for 35 questions
+            startTimer(20*60);
+        };
+
+        // Form submit
+        document.getElementById('quiz-form').onsubmit = function(e) {
+            e.preventDefault();
+            submitQuiz(false);
+        };
     });
 </script>
-<script src="script.js"></script>
+<!-- MathJax for LaTeX rendering -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
