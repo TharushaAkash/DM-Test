@@ -1,7 +1,7 @@
 document.getElementById('quiz-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Correct answers for each question
+    // Correct answers for each question (only for the first 25 auto-graded)
     const answers = {
         q1: '2049016320',
         q2: '358800000',
@@ -39,17 +39,16 @@ document.getElementById('quiz-form').addEventListener('submit', function(e) {
         if (block) {
             block.classList.remove('correct');
             block.classList.remove('wrong');
-            // Remove previous feedback spans if any
             const oldFeedback = block.querySelector('.answer-feedback');
             if (oldFeedback) oldFeedback.remove();
         }
     }
 
-    // Check answers and highlight
+    // Check answers and highlight for first 25 questions only
     for (let i = 1; i <= 25; i++) {
         const qid = 'q' + i;
         const select = document.getElementById(qid);
-        const userAnswer = select.value;
+        const userAnswer = select ? select.value : '';
         const correctAnswer = answers[qid];
         const block = document.getElementById('block-' + qid);
 
@@ -57,7 +56,6 @@ document.getElementById('quiz-form').addEventListener('submit', function(e) {
             score++;
             if (block) {
                 block.classList.add('correct');
-                // Show correct answer in green
                 const span = document.createElement('span');
                 span.className = 'answer-feedback';
                 span.style.color = 'green';
@@ -68,7 +66,6 @@ document.getElementById('quiz-form').addEventListener('submit', function(e) {
         } else {
             if (block) {
                 block.classList.add('wrong');
-                // Show user's answer in red and correct answer in green
                 const span = document.createElement('span');
                 span.className = 'answer-feedback';
                 span.innerHTML = `<span style="color:red;">✘ Your answer: ${userAnswer || 'No answer'}</span> <span style="color:green;">Correct: ${correctAnswer}</span>`;
@@ -88,4 +85,15 @@ document.getElementById('quiz-form').addEventListener('submit', function(e) {
     }
 
     document.getElementById('result').textContent = resultText;
+
+    // Show the result and feedback section, and scroll to it
+    document.getElementById('result').style.display = '';
+    document.getElementById('feedback').style.display = '';
+    setTimeout(() => {
+        document.getElementById('result').scrollIntoView({behavior: "smooth"});
+    }, 100);
+
+    // Do NOT hide pages here; let navigation remain as is
+    // Remove or comment out this line if present:
+    // document.querySelectorAll('.quiz-page').forEach(pg => pg.style.display = 'none');
 });

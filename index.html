@@ -375,7 +375,268 @@
                 <input type="checkbox" name="mq9" value="-2,2"> {−2, 2}<br>
             </div>
             <button type="button" id="prev11-btn">Previous</button>
-            <button type="submit" id="submit-btn">Submit</button>
+            <button type="button" id="next11-btn">Next</button>
+        </div>
+        <!-- Page 12: Function Q1 -->
+        <div id="page12" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>35. Let f: ℝ → ℝ be defined by f(x) = (3x−7)/(x+2). Which of the following is true?</label><br>
+                <select name="func1" required>
+                    <option value="">--Select--</option>
+                    <option value="injective">f is injective (one-to-one)</option>
+                    <option value="not_injective">f is not injective</option>
+                    <option value="bijective">f is bijective (one-to-one and onto)</option>
+                    <option value="not_bijective">f is not bijective</option>
+                </select>
+                <br>
+                <label>What is the domain of f⁻¹?</label><br>
+                <select name="func1_domain" required>
+                    <option value="">--Select--</option>
+                    <option value="R_minus_-2">ℝ \\ {-2}</option>
+                    <option value="R">ℝ</option>
+                    <option value="R_minus_7/3">ℝ \\ {7/3}</option>
+                </select>
+                <br>
+                <label>What is the range of f⁻¹?</label><br>
+                <select name="func1_range" required>
+                    <option value="">--Select--</option>
+                    <option value="R_minus_7/3">ℝ \\ {7/3}</option>
+                    <option value="R">ℝ</option>
+                    <option value="R_minus_-2">ℝ \\ {-2}</option>
+                </select>
+            </div>
+            <button type="button" id="prev12-btn">Previous</button>
+            <button type="button" id="next12-btn">Next</button>
+        </div>
+        <!-- Page 13: Function Q2 -->
+        <div id="page13" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>36. The function f: ℤ → ℤ defined by f(n) = n² + 1 is:</label><br>
+                <select name="func2" required>
+                    <option value="">--Select--</option>
+                    <option value="injective">Injective</option>
+                    <option value="surjective">Surjective</option>
+                    <option value="bijective">Bijective</option>
+                    <option value="neither">Neither</option>
+                </select>
+            </div>
+            <button type="button" id="prev13-btn">Previous</button>
+            <button type="button" id="next13-btn">Next</button>
+        </div>
+        <!-- Page 14: Function Q3 -->
+        <div id="page14" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>37. Let f: ℝ → ℝ be given by f(x) = x³ + x. Which of the following is true?</label><br>
+                <select name="func3" required>
+                    <option value="">--Select--</option>
+                    <option value="bijective">f is bijective and has an inverse</option>
+                    <option value="not_bijective">f is not bijective</option>
+                    <option value="injective_only">f is injective only</option>
+                    <option value="surjective_only">f is surjective only</option>
+                </select>
+            </div>
+            <button type="button" id="prev14-btn">Previous</button>
+            <button type="button" id="next14-btn">Next</button>
+        </div>
+        <!-- Page 15: Function Q4 -->
+        <div id="page15" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>38. Let f(x) = sin(x) and g(x) = x². Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func4" value="fog_function">f∘g is a function<br>
+                <input type="checkbox" name="func4" value="gof_function">g∘f is a function<br>
+                <input type="checkbox" name="func4" value="fog_all_R">Domain of f∘g is ℝ<br>
+                <input type="checkbox" name="func4" value="gof_all_R">Domain of g∘f is ℝ<br>
+            </div>
+            <button type="button" id="prev15-btn">Previous</button>
+            <button type="button" id="next15-btn">Next</button>
+        </div>
+        <!-- Page 16: Function Q5 -->
+        <div id="page16" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>39. For f: ℝ∖{0} → ℝ, f(x) = 1/x, which of the following are true?</label><br>
+                <input type="checkbox" name="func5" value="f_inverse">f is its own inverse<br>
+                <input type="checkbox" name="func5" value="f_not_inverse">f is not its own inverse<br>
+                <input type="checkbox" name="func5" value="f_fx_x">f(f(x)) = x for all x ≠ 0<br>
+            </div>
+            <button type="button" id="prev16-btn">Previous</button>
+            <button type="button" id="next16-btn">Next</button>
+        </div>
+        <!-- Page 17: Function Q6 -->
+        <div id="page17" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>40. f(x) = x² − 4x + 7. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func6" value="injective">f is injective<br>
+                <input type="checkbox" name="func6" value="surjective">f is surjective<br>
+                <input type="checkbox" name="func6" value="not_injective">f is not injective<br>
+                <input type="checkbox" name="func6" value="not_surjective">f is not surjective<br>
+            </div>
+            <button type="button" id="prev17-btn">Previous</button>
+            <button type="button" id="next17-btn">Next</button>
+        </div>
+        <!-- Page 18: Function Q7 -->
+        <div id="page18" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>41. f(x) = ln(x), x &gt; 0. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func7" value="injective">f is injective<br>
+                <input type="checkbox" name="func7" value="surjective">f is surjective onto ℝ<br>
+                <input type="checkbox" name="func7" value="inverse_exp">Inverse is exp(x)<br>
+            </div>
+            <button type="button" id="prev18-btn">Previous</button>
+            <button type="button" id="next18-btn">Next</button>
+        </div>
+        <!-- Page 19: Function Q8 -->
+        <div id="page19" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>42. f(x) = |2x−5|. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func8" value="invertible">f is invertible on ℝ<br>
+                <input type="checkbox" name="func8" value="not_invertible">f is not invertible on ℝ<br>
+                <input type="checkbox" name="func8" value="invertible_restricted">f is invertible if domain is restricted<br>
+            </div>
+            <button type="button" id="prev19-btn">Previous</button>
+            <button type="button" id="next19-btn">Next</button>
+        </div>
+        <!-- Page 20: Function Q9 -->
+        <div id="page20" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>43. f(x) = { x+2 if x&lt;0; x² if x≥0 }. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func9" value="continuous">f is continuous at x=0<br>
+                <input type="checkbox" name="func9" value="not_continuous">f is not continuous at x=0<br>
+                <input type="checkbox" name="func9" value="is_function">f is a function<br>
+                <input type="checkbox" name="func9" value="not_function">f is not a function<br>
+            </div>
+            <button type="button" id="prev20-btn">Previous</button>
+            <button type="button" id="next20-btn">Next</button>
+        </div>
+        <!-- Page 21: Function Q10 -->
+        <div id="page21" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>44. f: ℕ → ℕ, f(n) = number of digits in n!. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func10" value="injective">f is injective<br>
+                <input type="checkbox" name="func10" value="surjective">f is surjective<br>
+                <input type="checkbox" name="func10" value="not_injective">f is not injective<br>
+                <input type="checkbox" name="func10" value="not_surjective">f is not surjective<br>
+            </div>
+            <button type="button" id="prev21-btn">Previous</button>
+            <button type="button" id="next21-btn">Next</button>
+        </div>
+        <!-- Page 22: Function Q11 -->
+        <div id="page22" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>45. If f∘g is injective, then f must be injective.</label><br>
+                <select name="func11" required>
+                    <option value="">--Select--</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <button type="button" id="prev22-btn">Previous</button>
+            <button type="button" id="next22-btn">Next</button>
+        </div>
+        <!-- Page 23: Function Q12 -->
+        <div id="page23" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>46. If f∘g is surjective, then g must be surjective.</label><br>
+                <select name="func12" required>
+                    <option value="">--Select--</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <button type="button" id="prev23-btn">Previous</button>
+            <button type="button" id="next23-btn">Next</button>
+        </div>
+        <!-- Page 24: Function Q13 -->
+        <div id="page24" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>47. Let f: A→B and g: B→C be bijective. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func13" value="gof_bijective">g∘f is bijective<br>
+                <input type="checkbox" name="func13" value="inverse_composition"> (g∘f)⁻¹ = f⁻¹∘g⁻¹<br>
+            </div>
+            <button type="button" id="prev24-btn">Previous</button>
+            <button type="button" id="next24-btn">Next</button>
+        </div>
+        <!-- Page 25: Function Q14 -->
+        <div id="page25" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>48. f(x) = tan(x). Is it possible to define f⁻¹(x) on (−π/2, π/2)?</label><br>
+                <select name="func14" required>
+                    <option value="">--Select--</option>
+                    <option value="yes">Yes, f⁻¹(x) = arctan(x)</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <button type="button" id="prev25-btn">Previous</button>
+            <button type="button" id="next25-btn">Next</button>
+        </div>
+        <!-- Page 26: Function Q15 -->
+        <div id="page26" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>49. The set of all functions from ℝ→ℝ under function composition is a group.</label><br>
+                <select name="func15" required>
+                    <option value="">--Select--</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <button type="button" id="prev26-btn">Previous</button>
+            <button type="button" id="next26-btn">Next</button>
+        </div>
+        <!-- Page 27: Function Q16 -->
+        <div id="page27" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>50. f(x)=4ˣ. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func16" value="injective">f is injective<br>
+                <input type="checkbox" name="func16" value="surjective">f is surjective<br>
+                <input type="checkbox" name="func16" value="inverse_log">Inverse is log₄(x)<br>
+            </div>
+            <button type="button" id="prev27-btn">Previous</button>
+            <button type="button" id="next27-btn">Next</button>
+        </div>
+        <!-- Page 28: Function Q17 -->
+        <div id="page28" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>51. f(x)={x² if x&lt;0; 3x+1 if x≥0}. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func17" value="continuous">f is continuous at x=0<br>
+                <input type="checkbox" name="func17" value="not_continuous">f is not continuous at x=0<br>
+                <input type="checkbox" name="func17" value="differentiable">f is differentiable at x=0<br>
+                <input type="checkbox" name="func17" value="not_differentiable">f is not differentiable at x=0<br>
+            </div>
+            <button type="button" id="prev28-btn">Previous</button>
+            <button type="button" id="next28-btn">Next</button>
+        </div>
+        <!-- Page 29: Function Q18 -->
+        <div id="page29" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>52. f(x) = x⁵ + x + 1. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func18" value="injective">f is injective<br>
+                <input type="checkbox" name="func18" value="has_inverse">f has an inverse<br>
+                <input type="checkbox" name="func18" value="not_injective">f is not injective<br>
+            </div>
+            <button type="button" id="prev29-btn">Previous</button>
+            <button type="button" id="next29-btn">Next</button>
+        </div>
+        <!-- Page 30: Function Q19 -->
+        <div id="page30" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>53. f: A→B, for every b∈B, exactly two elements in A map to b. Which of the following are true?</label><br>
+                <input type="checkbox" name="func19" value="function">f is a function<br>
+                <input type="checkbox" name="func19" value="invertible">f is invertible<br>
+                <input type="checkbox" name="func19" value="not_invertible">f is not invertible<br>
+            </div>
+            <button type="button" id="prev30-btn">Previous</button>
+            <button type="button" id="next30-btn">Next</button>
+        </div>
+        <!-- Page 31: Function Q20 -->
+        <div id="page31" class="quiz-page" style="display:none;">
+            <div class="question-block">
+                <label>54. f(x) = ⎣x/2⎦. Which of the following are true? (Select all that apply)</label><br>
+                <input type="checkbox" name="func20" value="injective">f is injective<br>
+                <input type="checkbox" name="func20" value="surjective">f is surjective onto ℤ<br>
+                <input type="checkbox" name="func20" value="not_injective">f is not injective<br>
+                <input type="checkbox" name="func20" value="not_surjective">f is not surjective onto ℤ<br>
+            </div>
+            <button type="button" id="prev31-btn">Previous</button>
+            <button type="submit" id="submit-btn2">Submit</button>
         </div>
     </form>
     <div id="result"></div>
@@ -415,6 +676,26 @@
             document.getElementById('page9'),
             document.getElementById('page10'),
             document.getElementById('page11'),
+            document.getElementById('page12'),
+            document.getElementById('page13'),
+            document.getElementById('page14'),
+            document.getElementById('page15'),
+            document.getElementById('page16'),
+            document.getElementById('page17'),
+            document.getElementById('page18'),
+            document.getElementById('page19'),
+            document.getElementById('page20'),
+            document.getElementById('page21'),
+            document.getElementById('page22'),
+            document.getElementById('page23'),
+            document.getElementById('page24'),
+            document.getElementById('page25'),
+            document.getElementById('page26'),
+            document.getElementById('page27'),
+            document.getElementById('page28'),
+            document.getElementById('page29'),
+            document.getElementById('page30'),
+            document.getElementById('page31'),
         ];
         // Helper to show only one page at a time
         function showPage(idx) {
@@ -428,60 +709,72 @@
         if (document.getElementById('prev-btn')) {
             document.getElementById('prev-btn').addEventListener('click', function() { showPage(0); });
         }
-        // Add navigation for new pages
-        if (document.getElementById('next2-btn')) {
-            document.getElementById('next2-btn').addEventListener('click', function() { showPage(2); });
-        }
-        if (document.getElementById('prev3-btn')) {
-            document.getElementById('prev3-btn').addEventListener('click', function() { showPage(1); });
-        }
-        if (document.getElementById('next3-btn')) {
-            document.getElementById('next3-btn').addEventListener('click', function() { showPage(3); });
-        }
-        if (document.getElementById('prev4-btn')) {
-            document.getElementById('prev4-btn').addEventListener('click', function() { showPage(2); });
-        }
-        if (document.getElementById('next4-btn')) {
-            document.getElementById('next4-btn').addEventListener('click', function() { showPage(4); });
-        }
-        if (document.getElementById('prev5-btn')) {
-            document.getElementById('prev5-btn').addEventListener('click', function() { showPage(3); });
-        }
-        if (document.getElementById('next5-btn')) {
-            document.getElementById('next5-btn').addEventListener('click', function() { showPage(5); });
-        }
-        if (document.getElementById('prev6-btn')) {
-            document.getElementById('prev6-btn').addEventListener('click', function() { showPage(4); });
-        }
-        if (document.getElementById('next6-btn')) {
-            document.getElementById('next6-btn').addEventListener('click', function() { showPage(6); });
-        }
-        if (document.getElementById('prev7-btn')) {
-            document.getElementById('prev7-btn').addEventListener('click', function() { showPage(5); });
-        }
-        if (document.getElementById('next7-btn')) {
-            document.getElementById('next7-btn').addEventListener('click', function() { showPage(7); });
-        }
-        if (document.getElementById('prev8-btn')) {
-            document.getElementById('prev8-btn').addEventListener('click', function() { showPage(6); });
-        }
-        if (document.getElementById('next8-btn')) {
-            document.getElementById('next8-btn').addEventListener('click', function() { showPage(8); });
-        }
-        if (document.getElementById('prev9-btn')) {
-            document.getElementById('prev9-btn').addEventListener('click', function() { showPage(7); });
-        }
-        if (document.getElementById('next9-btn')) {
-            document.getElementById('next9-btn').addEventListener('click', function() { showPage(9); });
-        }
-        if (document.getElementById('prev10-btn')) {
-            document.getElementById('prev10-btn').addEventListener('click', function() { showPage(8); });
-        }
-        if (document.getElementById('next10-btn')) {
-            document.getElementById('next10-btn').addEventListener('click', function() { showPage(10); });
-        }
-        if (document.getElementById('prev11-btn')) {
-            document.getElementById('prev11-btn').addEventListener('click', function() { showPage(9); });
+        // Navigation for all pages (explicitly for each page)
+        if (document.getElementById('next2-btn')) document.getElementById('next2-btn').addEventListener('click', function() { showPage(2); });
+        if (document.getElementById('prev3-btn')) document.getElementById('prev3-btn').addEventListener('click', function() { showPage(1); });
+        if (document.getElementById('next3-btn')) document.getElementById('next3-btn').addEventListener('click', function() { showPage(3); });
+        if (document.getElementById('prev4-btn')) document.getElementById('prev4-btn').addEventListener('click', function() { showPage(2); });
+        if (document.getElementById('next4-btn')) document.getElementById('next4-btn').addEventListener('click', function() { showPage(4); });
+        if (document.getElementById('prev5-btn')) document.getElementById('prev5-btn').addEventListener('click', function() { showPage(3); });
+        if (document.getElementById('next5-btn')) document.getElementById('next5-btn').addEventListener('click', function() { showPage(5); });
+        if (document.getElementById('prev6-btn')) document.getElementById('prev6-btn').addEventListener('click', function() { showPage(4); });
+        if (document.getElementById('next6-btn')) document.getElementById('next6-btn').addEventListener('click', function() { showPage(6); });
+        if (document.getElementById('prev7-btn')) document.getElementById('prev7-btn').addEventListener('click', function() { showPage(5); });
+        if (document.getElementById('next7-btn')) document.getElementById('next7-btn').addEventListener('click', function() { showPage(7); });
+        if (document.getElementById('prev8-btn')) document.getElementById('prev8-btn').addEventListener('click', function() { showPage(6); });
+        if (document.getElementById('next8-btn')) document.getElementById('next8-btn').addEventListener('click', function() { showPage(8); });
+        if (document.getElementById('prev9-btn')) document.getElementById('prev9-btn').addEventListener('click', function() { showPage(7); });
+        if (document.getElementById('next9-btn')) document.getElementById('next9-btn').addEventListener('click', function() { showPage(9); });
+        if (document.getElementById('prev10-btn')) document.getElementById('prev10-btn').addEventListener('click', function() { showPage(8); });
+        if (document.getElementById('next10-btn')) document.getElementById('next10-btn').addEventListener('click', function() { showPage(10); });
+        if (document.getElementById('prev11-btn')) document.getElementById('prev11-btn').addEventListener('click', function() { showPage(9); });
+        if (document.getElementById('next11-btn')) document.getElementById('next11-btn').addEventListener('click', function() { showPage(11); });
+        if (document.getElementById('prev12-btn')) document.getElementById('prev12-btn').addEventListener('click', function() { showPage(10); });
+        if (document.getElementById('next12-btn')) document.getElementById('next12-btn').addEventListener('click', function() { showPage(12); });
+        if (document.getElementById('prev13-btn')) document.getElementById('prev13-btn').addEventListener('click', function() { showPage(11); });
+        if (document.getElementById('next13-btn')) document.getElementById('next13-btn').addEventListener('click', function() { showPage(13); });
+        if (document.getElementById('prev14-btn')) document.getElementById('prev14-btn').addEventListener('click', function() { showPage(12); });
+        if (document.getElementById('next14-btn')) document.getElementById('next14-btn').addEventListener('click', function() { showPage(14); });
+        if (document.getElementById('prev15-btn')) document.getElementById('prev15-btn').addEventListener('click', function() { showPage(13); });
+        if (document.getElementById('next15-btn')) document.getElementById('next15-btn').addEventListener('click', function() { showPage(15); });
+        if (document.getElementById('prev16-btn')) document.getElementById('prev16-btn').addEventListener('click', function() { showPage(14); });
+        if (document.getElementById('next16-btn')) document.getElementById('next16-btn').addEventListener('click', function() { showPage(16); });
+        if (document.getElementById('prev17-btn')) document.getElementById('prev17-btn').addEventListener('click', function() { showPage(15); });
+        if (document.getElementById('next17-btn')) document.getElementById('next17-btn').addEventListener('click', function() { showPage(17); });
+        if (document.getElementById('prev18-btn')) document.getElementById('prev18-btn').addEventListener('click', function() { showPage(16); });
+        if (document.getElementById('next18-btn')) document.getElementById('next18-btn').addEventListener('click', function() { showPage(18); });
+        if (document.getElementById('prev19-btn')) document.getElementById('prev19-btn').addEventListener('click', function() { showPage(17); });
+        if (document.getElementById('next19-btn')) document.getElementById('next19-btn').addEventListener('click', function() { showPage(19); });
+        if (document.getElementById('prev20-btn')) document.getElementById('prev20-btn').addEventListener('click', function() { showPage(18); });
+        if (document.getElementById('next20-btn')) document.getElementById('next20-btn').addEventListener('click', function() { showPage(20); });
+        if (document.getElementById('prev21-btn')) document.getElementById('prev21-btn').addEventListener('click', function() { showPage(19); });
+        if (document.getElementById('next21-btn')) document.getElementById('next21-btn').addEventListener('click', function() { showPage(21); });
+        if (document.getElementById('prev22-btn')) document.getElementById('prev22-btn').addEventListener('click', function() { showPage(20); });
+        if (document.getElementById('next22-btn')) document.getElementById('next22-btn').addEventListener('click', function() { showPage(22); });
+        if (document.getElementById('prev23-btn')) document.getElementById('prev23-btn').addEventListener('click', function() { showPage(21); });
+        if (document.getElementById('next23-btn')) document.getElementById('next23-btn').addEventListener('click', function() { showPage(23); });
+        if (document.getElementById('prev24-btn')) document.getElementById('prev24-btn').addEventListener('click', function() { showPage(22); });
+        if (document.getElementById('next24-btn')) document.getElementById('next24-btn').addEventListener('click', function() { showPage(24); });
+        if (document.getElementById('prev25-btn')) document.getElementById('prev25-btn').addEventListener('click', function() { showPage(23); });
+        if (document.getElementById('next25-btn')) document.getElementById('next25-btn').addEventListener('click', function() { showPage(25); });
+        if (document.getElementById('prev26-btn')) document.getElementById('prev26-btn').addEventListener('click', function() { showPage(24); });
+        if (document.getElementById('next26-btn')) document.getElementById('next26-btn').addEventListener('click', function() { showPage(26); });
+        if (document.getElementById('prev27-btn')) document.getElementById('prev27-btn').addEventListener('click', function() { showPage(25); });
+        if (document.getElementById('next27-btn')) document.getElementById('next27-btn').addEventListener('click', function() { showPage(27); });
+        if (document.getElementById('prev28-btn')) document.getElementById('prev28-btn').addEventListener('click', function() { showPage(26); });
+        if (document.getElementById('next28-btn')) document.getElementById('next28-btn').addEventListener('click', function() { showPage(28); });
+        if (document.getElementById('prev29-btn')) document.getElementById('prev29-btn').addEventListener('click', function() { showPage(27); });
+        if (document.getElementById('next29-btn')) document.getElementById('next29-btn').addEventListener('click', function() { showPage(29); });
+        if (document.getElementById('prev30-btn')) document.getElementById('prev30-btn').addEventListener('click', function() { showPage(28); });
+        if (document.getElementById('next30-btn')) document.getElementById('next30-btn').addEventListener('click', function() { showPage(30); });
+        if (document.getElementById('prev31-btn')) document.getElementById('prev31-btn').addEventListener('click', function() { showPage(29); });
+        // Submit button handler for last page
+        if (document.getElementById('submit-btn2')) {
+            document.getElementById('submit-btn2').addEventListener('click', function() {
+                setTimeout(function() {
+                    document.getElementById('result').scrollIntoView({behavior: "smooth"});
+                }, 100);
+            });
         }
     });
 </script>
