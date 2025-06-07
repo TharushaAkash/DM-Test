@@ -636,6 +636,24 @@
         if (timer) clearInterval(timer);
     }
 
+    // Mark sidebar gray for answered questions
+    function updateSidebarAnswered() {
+        document.querySelectorAll('.qnav-btn').forEach((el, i) => {
+            el.classList.remove('answered');
+            const q = QUESTIONS[i];
+            let val = '';
+            if (q.type === 'select') {
+                const sel = document.querySelector(`[name="q${i+1}"]`);
+                if (sel && sel.value) val = sel.value;
+            } else if (q.type === 'input') {
+                const inp = document.querySelector(`[name="q${i+1}"]`);
+                if (inp && inp.value.trim()) val = inp.value.trim();
+            }
+            if (val) el.style.background = '#bbb';
+            else el.style.background = '';
+        });
+    }
+
     // Main
     document.addEventListener('DOMContentLoaded', function() {
         renderQuestions();
@@ -644,6 +662,10 @@
 
         // Sidebar highlight on load
         document.querySelectorAll('.qnav-btn')[0].classList.add('active');
+
+        // Mark sidebar gray for answered questions on input/select change
+        document.getElementById('quiz-form').addEventListener('input', updateSidebarAnswered);
+        document.getElementById('quiz-form').addEventListener('change', updateSidebarAnswered);
 
         // Timer
         document.getElementById('start-timer-btn').onclick = function() {
@@ -656,6 +678,8 @@
             e.preventDefault();
             submitQuiz(false);
         };
+        // Initial update for sidebar
+        updateSidebarAnswered();
     });
 </script>
 <!-- MathJax for LaTeX rendering -->
