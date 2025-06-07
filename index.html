@@ -75,7 +75,7 @@
             <button id="start-timer-btn">Start Timer</button>
             <span id="timer-display"></span>
         </div>
-        <form id="quiz-form" autocomplete="off">
+        <form id="quiz-form" autocomplete="off" style="display:none;">
             <!-- Questions will be injected here by JS -->
         </form>
         <div id="result"></div>
@@ -658,7 +658,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         renderQuestions();
         renderSidebar();
-        showPage(1);
+        // Hide quiz until timer starts
+        document.getElementById('quiz-form').style.display = 'none';
+        document.getElementById('result').style.display = 'none';
+        document.getElementById('feedback').style.display = 'none';
+        document.querySelector('.quiz-sidebar').style.display = 'none';
 
         // Sidebar highlight on load
         document.querySelectorAll('.qnav-btn')[0].classList.add('active');
@@ -669,8 +673,14 @@
 
         // Timer
         document.getElementById('start-timer-btn').onclick = function() {
-            // 20 minutes for 35 questions
-            startTimer(20*60);
+            // 1 hour for quiz
+            startTimer(60*60);
+            document.getElementById('quiz-form').style.display = '';
+            document.getElementById('result').style.display = '';
+            document.getElementById('feedback').style.display = '';
+            document.querySelector('.quiz-sidebar').style.display = '';
+            showPage(1);
+            document.getElementById('start-timer-btn').disabled = true;
         };
 
         // Form submit
