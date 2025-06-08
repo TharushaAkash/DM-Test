@@ -87,404 +87,253 @@
     </div>
 </div>
 <script>
-const QUESTIONS = [
-    // 1-8
-    {
-        text: 'If A = {1, 2, 3, 4} and B = {3, 4, 5, 6}, what is A ∩ B?',
-        type: 'select',
-        options: [
+// Store answers in a closure, not in the global QUESTIONS array
+(function() {
+    // Move the full questions array into a closure
+    const _QUESTIONS = [
+        {text: 'If A = {1, 2, 3, 4} and B = {3, 4, 5, 6}, what is A ∩ B?', type: 'select', options: [
             {v:'a', t:'a) {1, 2, 3, 4, 5, 6}'},
             {v:'b', t:'b) {3, 4}'},
             {v:'c', t:'c) {1, 2}'},
             {v:'d', t:'d) {5, 6}'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'The power set of {a, b} has how many elements?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'The power set of {a, b} has how many elements?', type: 'select', options: [
             {v:'a', t:'a) 2'},
             {v:'b', t:'b) 3'},
             {v:'c', t:'c) 4'},
             {v:'d', t:'d) 5'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'If |A| = 15, |B| = 20, and |A ∩ B| = 8, what is |A ∪ B|?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'If |A| = 15, |B| = 20, and |A ∩ B| = 8, what is |A ∪ B|?', type: 'select', options: [
             {v:'a', t:'a) 35'},
             {v:'b', t:'b) 27'},
             {v:'c', t:'c) 43'},
             {v:'d', t:'d) 23'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'Which of the following represents the symmetric difference A ⊕ B?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'Which of the following represents the symmetric difference A ⊕ B?', type: 'select', options: [
             {v:'a', t:'a) (A ∪ B) - (A ∩ B)'},
             {v:'b', t:'b) A ∩ B'},
             {v:'c', t:'c)  A ∪ B'},
             {v:'d', t:'d) A - B'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'A function f: A → B is bijective if and only if:',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A function f: A → B is bijective if and only if:', type: 'select', options: [
             {v:'a', t:'a) It is onto but not one-to-one'},
             {v:'b', t:'b)  It is one-to-one but not onto'},
             {v:'c', t:'c) It is both one-to-one and onto'},
             {v:'d', t:'d) It is neither one-to-one nor onto'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: ' If f(x) = 2x + 3 and g(x) = x², what is (f ∘ g)(2)?',
-        type: 'select',
-        options: [
+        ]},
+        {text: ' If f(x) = 2x + 3 and g(x) = x², what is (f ∘ g)(2)?', type: 'select', options: [
             {v:'a', t:'a) 11'},
             {v:'b', t:'b) 49'},
             {v:'c', t:'c) 7'},
             {v:'d', t:'d) 14'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'The inverse of f(x) = (x - 5)/3 is:?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'The inverse of f(x) = (x - 5)/3 is:?', type: 'select', options: [
             {v:'a', t:'a) f⁻¹(x) = 3x - 5'},
             {v:'b', t:'b) f⁻¹(x) = 3x + 5'},
             {v:'c', t:'c) f⁻¹(x) = (x + 5)/3'},
             {v:'d', t:'d) f⁻¹(x) = 3(x + 5)'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'What is the 10th term of the arithmetic sequence 3, 7, 11, 15, ...?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'What is the 10th term of the arithmetic sequence 3, 7, 11, 15, ...?', type: 'select', options: [
             {v:'a', t:'a) 35'},
             {v:'b', t:'b) 39'},
             {v:'c', t:'c) 43'},
             {v:'d', t:'d) 51'}
-        ],
-        answer: 'b'
-    },
-    // 9-20
-    {
-        text: 'The sum of the first 8 terms of the geometric series 2 + 6 + 18 + 54 + ... is:',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'The sum of the first 8 terms of the geometric series 2 + 6 + 18 + 54 + ... is:', type: 'select', options: [
             {v:'a', t:'a) 6560'},
             {v:'b', t:'b) 3280'},
             {v:'c', t:'c) 1640'},
             {v:'d', t:'d) 4920'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'A restaurant menu has 4 appetizers, 6 main courses, and 3 desserts. How many different complete meals are possible?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A restaurant menu has 4 appetizers, 6 main courses, and 3 desserts. How many different complete meals are possible?', type: 'select', options: [
             {v:'a', t:'a) 13'},
             {v:'b', t:'b) 24'},
             {v:'c', t:'c) 72'},
             {v:'d', t:'d) 48'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'In how many ways can you choose either a math book from 5 available or a science book from 7 available?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'In how many ways can you choose either a math book from 5 available or a science book from 7 available?', type: 'select', options: [
             {v:'a', t:'a) 12'},
             {v:'b', t:'b) 35'},
             {v:'c', t:'c) 5'},
             {v:'d', t:'d) 7'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'Arrange letters of “ASSESSMENT” so that no two S’s are adjacent.',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'Arrange letters of “ASSESSMENT” so that no two S’s are adjacent.', type: 'select', options: [
             {v:'a', t:'a) 50400'},
             {v:'b', t:'b) 75600'},
             {v:'c', t:'c) 100800'},
             {v:'d', t:'d) 120960'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'A license plate consists of 3 letters followed by 2 digits. How many different license plates are possible',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A license plate consists of 3 letters followed by 2 digits. How many different license plates are possible', type: 'select', options: [
             {v:'a', t:'a) 676,000'},
             {v:'b', t:'b) 67,600'},
             {v:'c', t:'c) 17,576'},
             {v:'d', t:'d) 1,757,600'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'How many 4-digit numbers can be formed using digits 1, 2, 3, 4, 5 if repetition is not allowed?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'How many 4-digit numbers can be formed using digits 1, 2, 3, 4, 5 if repetition is not allowed?', type: 'select', options: [
             {v:'a', t:'a) 625'},
             {v:'b', t:'b) 120'},
             {v:'c', t:'c) 24'},
             {v:'d', t:'d) 60'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'In how many ways can 8 people be arranged in a row?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'In how many ways can 8 people be arranged in a row?', type: 'select', options: [
             {v:'a', t:'a) 8'},
             {v:'b', t:'b) 64'},
             {v:'c', t:'c) 40,320'},
             {v:'d', t:'d) Non of these'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'Select a 6-person committee from 10 students if two rivals cannot both serve.',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'Select a 6-person committee from 10 students if two rivals cannot both serve.', type: 'select', options: [
             {v:'a', t:'a) 210'},
             {v:'b', t:'b) 252'},
             {v:'c', t:'c) 196'},
             {v:'d', t:'d) 240'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'How many surjective functions from a 4-element set onto a 3-element set?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'How many surjective functions from a 4-element set onto a 3-element set?', type: 'select', options: [
             {v:'a', t:'a) 18'},
             {v:'b', t:'b) 36'},
             {v:'c', t:'c) 24'},
             {v:'d', t:'d) 6'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'How many permutations of the letters in "BOOK" are possible?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'How many permutations of the letters in "BOOK" are possible?', type: 'select', options: [
             {v:'a', t:'a) 24'},
             {v:'b', t:'b) 12'},
             {v:'c', t:'c) 4'},
             {v:'d', t:'d) 8'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'In how many ways can 5 people be selected and arranged from a group of 10 people?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'In how many ways can 5 people be selected and arranged from a group of 10 people?', type: 'select', options: [
             {v:'a', t:'a) 252'},
             {v:'b', t:'b) 30,240'},
             {v:'c', t:'c) 3,628,800'},
             {v:'d', t:'d) 120'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'How many different arrangements of the word "PEPPER" are possible?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'How many different arrangements of the word "PEPPER" are possible?', type: 'select', options: [
             {v:'a', t:'a) 720'},
             {v:'b', t:'b) 4500'},
             {v:'c', t:'c) 60'},
             {v:'d', t:'d) 180'}
-        ],
-        answer: 'd'
-    },
-    // 21-28
-    {
-        text: 'How many ways can 5 students be chosen from a class of 12?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'How many ways can 5 students be chosen from a class of 12?', type: 'select', options: [
             {v:'a', t:'a) 792'},
             {v:'b', t:'b) 60'},
             {v:'c', t:'c) 95,040'},
             {v:'d', t:'d) 792'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'In how many ways can you choose 3 books from 8 different books?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'In how many ways can you choose 3 books from 8 different books?', type: 'select', options: [
             {v:'a', t:'a) 24'},
             {v:'b', t:'b) 336'},
             {v:'c', t:'c) 56'},
             {v:'d', t:'d) 168'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'A pizza can have any combination of 6 available toppings. How many different pizzas are possible?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A pizza can have any combination of 6 available toppings. How many different pizzas are possible?', type: 'select', options: [
             {v:'a', t:'a) 36'},
             {v:'b', t:'b) 720'},
             {v:'c', t:'c) 6'},
             {v:'d', t:'d) 64'}
-        ],
-        answer: 'd'
-    },
-    {
-        text: 'The coefficient of x⁵ in the expansion of (x + 2)⁸ is:',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'The coefficient of x⁵ in the expansion of (x + 2)⁸ is:', type: 'select', options: [
             {v:'a', t:'a) 1792'},
             {v:'b', t:'b) 1120'},
             {v:'c', t:'c) 896'},
             {v:'d', t:'d) 448'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'What is C(6,2) + C(6,3) according to Pascals triangle identity?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'What is C(6,2) + C(6,3) according to Pascals triangle identity?', type: 'select', options: [
             {v:'a', t:'a) C(7,3)'},
             {v:'b', t:'b) C(7,2)'},
             {v:'c', t:'c) C(5,2)'},
             {v:'d', t:'d)  C(5,3)'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'The middle term in the expansion of (2x + 3y)⁶ is:',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'The middle term in the expansion of (2x + 3y)⁶ is:', type: 'select', options: [
             {v:'a', t:'a) 540x³y³'},
             {v:'b', t:'b) 1080x³y³'},
             {v:'c', t:'c) 270x³y'},
             {v:'d', t:'d) 810x³y³'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'A complete graph with 6 vertices has how many edges?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A complete graph with 6 vertices has how many edges?', type: 'select', options: [
             {v:'a', t:'a) 12'},
             {v:'b', t:'b) 15'},
             {v:'c', t:'c) 18'},
             {v:'d', t:'d) 21'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'In a graph, if every vertex has degree 4 and there are 8 vertices, how many edges are there?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'In a graph, if every vertex has degree 4 and there are 8 vertices, how many edges are there?', type: 'select', options: [
             {v:'a', t:'a) 32'},
             {v:'b', t:'b) 8'},
             {v:'c', t:'c) 16'},
             {v:'d', t:'d) 12'}
-        ],
-        answer: 'c'
-    },
-    // 29-35
-    {
-        text: 'A simple graph with 12 vertices, all degrees ≥ 7.  Minimum number of edges?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A simple graph with 12 vertices, all degrees ≥ 7.  Minimum number of edges?', type: 'select', options: [
             {v:'a', t:'a) 42'},
             {v:'b', t:'b) 36'},
             {v:'c', t:'c) 40'},
             {v:'d', t:'d) 45'}
-        ],
-        answer: 'a'
-    },
-    {
-        text: 'A graph is bipartite if and only if',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A graph is bipartite if and only if', type: 'select', options: [
             {v:'a', t:'a) It has an even number of vertices'},
             {v:'b', t:'b) Non of the above'},
             {v:'c', t:'c) It contains no odd cycles'},
             {v:'d', t:'d) All vertices have even degree'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'Adjacency matrix of an undirected graph is always',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'Adjacency matrix of an undirected graph is always', type: 'select', options: [
             {v:'a', t:'a) Skew-symmetric'},
             {v:'b', t:'b) Upper-triangular'},
             {v:'c', t:'c) Symmetric'},
             {v:'d', t:'d) Diagonal'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'A tree with n vertices has how many edges?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'A tree with n vertices has how many edges?', type: 'select', options: [
             {v:'a', t:'a) n'},
             {v:'b', t:'b) n-1'},
             {v:'c', t:'c) n+1'},
             {v:'d', t:'d) n²'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'In a binary tree with 15 nodes, what is the minimum possible height?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'In a binary tree with 15 nodes, what is the minimum possible height?', type: 'select', options: [
             {v:'a', t:'a) 4'},
             {v:'b', t:'b) 3'},
             {v:'c', t:'c) Non of the above'},
             {v:'d', t:'d) 6'}
-        ],
-        answer: 'b'
-    },
-    {
-        text: 'The number of spanning trees in a complete graph K₄ is:',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'The number of spanning trees in a complete graph K₄ is:', type: 'select', options: [
             {v:'a', t:'a) 8'},
             {v:'b', t:'b) 12'},
             {v:'c', t:'c) 16'},
             {v:'d', t:'d) 6'}
-        ],
-        answer: 'c'
-    },
-    {
-        text: 'If T(n) = T(n-1) + n with T(1) = 1, what is T(4)?',
-        type: 'select',
-        options: [
+        ]},
+        {text: 'If T(n) = T(n-1) + n with T(1) = 1, what is T(4)?', type: 'select', options: [
             {v:'a', t:'a) 7'},
             {v:'b', t:'b) 8'},
             {v:'c', t:'c) 9'},
             {v:'d', t:'d) 10'}
-        ],
-        answer: 'd'
-    }
-];
+        ]}
+    ];
+
+    // Expose only question text and options for rendering, not answers
+    window.getQuestionsForRender = function() {
+        return _QUESTIONS.map(q => ({
+            text: q.text,
+            type: q.type,
+            options: q.options
+        }));
+    };
+
+    // Expose only answers for grading, not to the DOM
+    window.getAnswersForGrading = function() {
+        // The answer key is stored ONLY in this closure, not in the DOM or window
+        // (You must fill this array with the correct answers in the same order as _QUESTIONS)
+        const answerKey = [
+            'b','c','b','a','c','a','b','b','a','c','a','b','a','b','c','c','a','b','b','d',
+            'a','c','d','a','b','b','b','c','a','c','c','b','b','c','d'
+        ];
+        return _QUESTIONS.map((q, i) => ({
+            answer: answerKey[i],
+            options: q.options
+        }));
+    };
+})();
 
 // Render questions/pages
 function renderQuestions() {
     const form = document.getElementById('quiz-form');
     form.innerHTML = '';
-    for (let i = 0; i < QUESTIONS.length; ++i) {
-        const q = QUESTIONS[i];
+    const QUESTIONS_RENDER = window.getQuestionsForRender();
+    for (let i = 0; i < QUESTIONS_RENDER.length; ++i) {
+        const q = QUESTIONS_RENDER[i];
         const div = document.createElement('div');
         div.className = 'quiz-page question-block';
         div.id = 'page' + (i+1);
@@ -522,7 +371,7 @@ function renderQuestions() {
             prevBtn.onclick = () => showPage(i);
             div.appendChild(prevBtn);
         }
-        if (i < QUESTIONS.length-1) {
+        if (i < QUESTIONS_RENDER.length-1) {
             const nextBtn = document.createElement('button');
             nextBtn.type = 'button';
             nextBtn.textContent = 'Next';
@@ -543,7 +392,8 @@ function renderQuestions() {
 function renderSidebar() {
     const qnav = document.getElementById('qnav');
     qnav.innerHTML = '';
-    for (let i = 0; i < QUESTIONS.length; ++i) {
+    const QUESTIONS_RENDER = window.getQuestionsForRender();
+    for (let i = 0; i < QUESTIONS_RENDER.length; ++i) {
         const btn = document.createElement('div');
         btn.className = 'qnav-btn';
         btn.textContent = (i+1);
@@ -555,7 +405,9 @@ function renderSidebar() {
 
 // Show only one page at a time
 function showPage(idx) {
-    for (let i = 1; i <= QUESTIONS.length; ++i) {
+    // Use QUESTIONS_RENDER length instead of QUESTIONS
+    const QUESTIONS_RENDER = window.getQuestionsForRender();
+    for (let i = 1; i <= QUESTIONS_RENDER.length; ++i) {
         const pg = document.getElementById('page'+i);
         if (pg) pg.style.display = (i === idx ? '' : 'none');
     }
@@ -598,8 +450,9 @@ function submitQuiz(auto=false) {
     let score = 0;
     let correctArr = [];
     let userAnswers = [];
-    for (let i = 0; i < QUESTIONS.length; ++i) {
-        const q = QUESTIONS[i];
+    const ANSWERS = window.getAnswersForGrading();
+    for (let i = 0; i < ANSWERS.length; ++i) {
+        const q = ANSWERS[i];
         let userAns = (data.get('q'+(i+1))||'').trim();
         userAnswers.push(userAns);
         let isCorrect = (userAns === q.answer);
@@ -607,7 +460,7 @@ function submitQuiz(auto=false) {
         if (isCorrect) score++;
     }
     // Mark answers
-    for (let i = 0; i < QUESTIONS.length; ++i) {
+    for (let i = 0; i < ANSWERS.length; ++i) {
         const block = document.getElementById('page'+(i+1));
         block.classList.remove('correct','incorrect');
         if (correctArr[i]) block.classList.add('correct');
@@ -621,11 +474,11 @@ function submitQuiz(auto=false) {
     });
     // Show result
     document.getElementById('result').innerHTML =
-        `<h2>Score: ${score} / ${QUESTIONS.length} (${Math.round(score*100/QUESTIONS.length)}%)</h2>`;
+        `<h2>Score: ${score} / ${ANSWERS.length} (${Math.round(score*100/ANSWERS.length)}%)</h2>`;
     // Feedback: list correct/incorrect, show user's answer and correct answer (full text)
     let fb = '';
-    for (let i = 0; i < QUESTIONS.length; ++i) {
-        const q = QUESTIONS[i];
+    for (let i = 0; i < ANSWERS.length; ++i) {
+        const q = ANSWERS[i];
         const userAns = userAnswers[i];
         const userOpt = q.options.find(opt => opt.v === userAns);
         const correctOpt = q.options.find(opt => opt.v === q.answer);
@@ -645,9 +498,10 @@ function submitQuiz(auto=false) {
 
 // Mark sidebar gray for answered questions
 function updateSidebarAnswered() {
+    const QUESTIONS_RENDER = window.getQuestionsForRender();
     document.querySelectorAll('.qnav-btn').forEach((el, i) => {
         el.classList.remove('answered');
-        const q = QUESTIONS[i];
+        const q = QUESTIONS_RENDER[i];
         let val = '';
         if (q.type === 'select') {
             const sel = document.querySelector(`[name="q${i+1}"]`);
